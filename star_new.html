@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR Scholars Network | Global Impact Platform</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            --star-blue: #5490D9; 
+            --star-dark: #030712; 
+        }
+
+        /* Lightweight Typography (Canva Sans Style) */
+        body { 
+            font-family: 'Canva Sans', sans-serif; 
+            background-color: var(--star-dark); 
+            color: #f8fafc; 
+            font-weight: 300; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, b, strong { font-weight: 500; }
+
+        #canvas-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a1329 0%, #030712 100%);
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Bento Grid Surfaces */
+        .bento-surface {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .bento-surface:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--star-blue);
+            box-shadow: 0 0 40px rgba(84, 144, 217, 0.1);
+        }
+
+        /* Impact Table Styling */
+        .impact-table-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background 0.2s;
+        }
+        .impact-table-row:hover { background: rgba(84, 144, 217, 0.05); }
+
+        /* Animated Status Dot */
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #10b981;
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.9); } }
+
+        /* Tech Suite Buttons */
+        .btn-star {
+            background-color: var(--star-blue);
+            transition: all 0.3s ease;
+        }
+        .btn-star:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -5px rgba(84, 144, 217, 0.3);
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500/30">
+
+    <div id="canvas-container"></div>
+
+    <nav class="glass-nav sticky top-0 z-[100] py-4 px-8">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-12">
+                <a href="/">
+                    <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" 
+                         alt="Star Scholars" class="h-8 md:h-10 w-auto">
+                </a>
+                <div class="hidden xl:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <a href="#" class="hover:text-white transition">Who We Are</a>
+                    <a href="#" class="hover:text-white transition">Get Involved</a>
+                    <a href="#" class="hover:text-white transition">Membership</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://app.starscholars.org/login" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">Admin Login</a>
+                <a href="https://app.starscholars.org/" class="bg-white text-slate-900 px-7 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl">Join Network</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        
+        <section class="relative pt-24 pb-32 px-6">
+            <div class="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7 space-y-8" id="hero-text">
+                    <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+                        <span class="status-dot"></span>
+                        <span class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.25em]">Upward Academic Mobility 2026</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight">
+                        How many STAR <span class="text-[#5490D9]"><br> Circles</span> have you led?
+                    </h1>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed max-w-xl">
+                        Join our vibrant community of scholars and unlock the power of cross border collaboration. Feel proud about the impact you make beyond traditional research metrics.
+                    </p>
+                    <div class="flex flex-wrap gap-6 pt-4">
+                        <a href="https://app.starscholars.org/" class="btn-star text-white px-12 py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-2xl">Join the Network</a>
+                        <button class="bg-white/5 border border-white/10 text-white px-12 py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition">Watch Vision</button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4" id="hero-bento">
+                    <div class="bento-surface p-8 col-span-2 relative group overflow-hidden">
+                        <p class="text-[#5490D9] font-bold text-[10px] uppercase tracking-[0.3em] mb-4">Latest Forum</p>
+                        <h3 class="text-xl font-medium text-white leading-snug">Advancing AI, Equity, & First-Gen Success</h3>
+                        <p class="text-xs text-slate-500 mt-4 leading-relaxed font-light italic">Marking the 8th Anniversary of the STAR Scholars Network</p>
+                        <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+                    </div>
+                    <div class="bento-surface p-6">
+                        <p class="text-slate-500 font-bold text-[9px] uppercase tracking-widest mb-2">Awards</p>
+                        <h4 class="font-bold text-sm text-white leading-snug">Chomsky Awards 2025</h4>
+                        <p class="text-[10px] text-slate-500 mt-2">Winners announced for previous year</p>
+                    </div>
+                    <div class="bento-surface p-6 text-center">
+                        <p class="text-[#5490D9] font-black text-2xl tracking-tighter mb-1">115+</p>
+                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Countries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 border-y border-white/5 bg-white/5 px-6">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+                    <div class="max-w-2xl">
+                        <h2 class="text-3xl font-semibold text-white tracking-tight leading-none">Star Circle: Impact Ranking</h2>
+                        <p class="text-slate-500 text-sm mt-4 font-light">A universal adopted ranking system for educators and institutions focused on engagement.</p>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">Update Cycle: January 2026</span>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="bento-surface overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest">
+                            Top Circle Leaders
+                        </div>
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest">Name</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Circles Led</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Participations</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Countries</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Dr. Sarah Jenkins</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">24</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">180</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">15</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Prof. Amit Khana</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">19</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">140</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">12</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Dr. Helena Vost</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">15</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">120</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">10</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Prof. Julian Chen</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">12</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">100</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">8</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="p-6 pt-4">
+                            <div class="text-center">
+                                <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.1em] shadow-lg">Browse More Leaders</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-surface flex flex-col">
+                        <div class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest">
+                            Top Star Institutions
+                        </div>
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest">Institution</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Impact Points</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Participations</th>
+                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Countries</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">O.P. Jindal University</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">142</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">250</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">20</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">American University (UAE)</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">98</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">180</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">15</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Stanford Academic Hub</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">76</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">150</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">12</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-slate-200">Harvard University</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold">65</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">130</td>
+                                    <td class="px-6 py-4 text-right text-slate-200">10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="p-6 pt-4">
+                            <div class="text-center">
+                                <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.1em] shadow-lg">Browse More Institutions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-surface p-4 text-center flex flex-col justify-center mt-8 max-w-md mx-auto">
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-3xl font-light text-white mb-2 tracking-tighter">1,840+</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Monthly Active Participants</p>
+                        </div>
+                        <div class="w-8 h-[1px] bg-white/10 mx-auto"></div>
+                        <div>
+                            <p class="text-xl font-light text-white mb-2 tracking-tighter">20,000</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Community Members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 px-8">
+            <div class="max-w-[1400px] mx-auto">
+                <h2 class="text-4xl font-semibold text-white tracking-tight mb-24 text-center">Discover Our Programs</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="bento-surface group overflow-hidden">
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Mentorship">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-white font-bold text-lg mb-2">Millennium Scholars</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborate with global mentors to advance transnational scholarship.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-surface group overflow-hidden">
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Training">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-white font-bold text-lg mb-2">Certified Scholar</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Engaged research and teaching for high social impact circles.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-surface group overflow-hidden">
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Research">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-white font-bold text-lg mb-2">Fellowship Program</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Transnational fellowships supporting emerging scholars worldwide.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-surface group overflow-hidden">
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Publishing">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-white font-bold text-lg mb-2">STAR Journals</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborative publishing through global autonomous circles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 bg-gradient-to-br from-white via-slate-50 to-blue-50 text-slate-900 rounded-[50px] mx-4 relative z-10 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%235490D9" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+            <div class="max-w-6xl mx-auto px-8 relative z-10">
+                <div class="text-center mb-24 reveal">
+                    <span class="text-brand font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">What Guides Us</span>
+                    <h2 class="text-4xl font-semibold tracking-tight text-slate-800">The values we live by</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 100ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Human-to-Human Relationships</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Building authentic human-to-human relationships among the people in the network, both online and in-person, to build trust and solidarity.</p>
+                    </div>
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 200ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Alternative Futures</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Grasping the deep challenges, injustices, and unsustainability of current systems in order to imagine alternative futures and create a more humane world.</p>
+                    </div>
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 300ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 16L3 5l5.5 0L12 1l3.5 4H21l-2 11H5m14 3c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-1h14v1z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Distributed Leadership</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Empowering leaders of all kinds to drive the activities of the network, including organizing new initiatives, spreading our message, and shaping our vision.</p>
+                    </div>
+
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 400ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Open Access</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Pioneering open access resources that empower members to leverage the power of networks to build their skills, knowledge, and expertise.</p>
+                    </div>
+
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 500ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L21 9l-9-6zM12 7.58l2.98 1.62L12 11.18l-2.98-1.62L12 7.58zM12 17.18l-3-1.63v-2.98l3 1.63v2.98z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Continuous Learning</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Engaging in continuous learning with our members to understand the trends, resources, and needs of the entire network and their communities.</p>
+                    </div>
+
+                    <div class="space-y-6 text-center group reveal" style="transition-delay: 600ms;">
+                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
+                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                            </svg>
+                        </div>
+                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Multilingual</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Communicating in 1000's of local languages to include and involve as many people as possible in building this community and shaping its future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 px-6">
+            <div class="max-w-6xl mx-auto">
+                <!-- Announcements -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bento-surface p-8">
+                        <h3 class="text-xl font-bold text-white mb-4">O.P. Jindal Global University and American University in the Emirates win Global Education for Peace Award</h3>
+                        <a href="#" class="text-brand font-bold">Learn More</a>
+                    </div>
+                    <div class="bento-surface p-8">
+                        <h3 class="text-xl font-bold text-white mb-4">STAR Global Conference 2026</h3>
+                        <p class="text-slate-400 mb-4">Hosted by OP Jindal Global University 10-14 December, 2026 in Sonipat, India</p>
+                        <a href="#" class="text-brand font-bold">Learn More</a>
+                    </div>
+                </div>
+                <!-- More announcements -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="bento-surface p-6 text-center">
+                        <h4 class="text-lg font-bold text-white mb-2">Academic Wellness</h4>
+                        <a href="#" class="text-brand font-bold">Learn More</a>
+                    </div>
+                    <div class="bento-surface p-6">
+                        <h4 class="text-lg font-bold text-white mb-2">Edward J. Valeau Scholarship Fund</h4>
+                        <p class="text-slate-400 text-sm mb-4">STAR Scholars Network establishes Edward J. Valeau Scholarship to assist emerging scholars from around the world.</p>
+                        <a href="#" class="text-brand font-bold">Donate Today!</a>
+                    </div>
+                    <div class="bento-surface p-6">
+                        <h4 class="text-lg font-bold text-white mb-2">NEW BOOK – Transforming Lives at the Institutional Level: Equity Promotion Initiatives Across the World</h4>
+                        <p class="text-slate-400 text-sm mb-4">Transforming Lives at the Institutional Level explores innovative higher education initiatives from around the world aimed at enhancing access and success for underrepresented and marginalized groups.</p>
+                        <a href="#" class="text-brand font-bold">Learn More</a>
+                    </div>
+                </div>
+                <!-- News items -->
+                <div class="space-y-4 mb-16">
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">Statement – World Meditation Day 2025</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">STAR Global Futures Forum</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">STAR Scholars Network Announces 2025 A. Noam Chomsky Global Connections Award Winners</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">Celebrating First-Generation College Student Month</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">STAR Scholars Network Welcomes Dr. George R. Boggs to Its Advisory Board</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
+                        <h5 class="text-white font-bold">President’s Statement on World Mental Health Day 2025</h5>
+                        <span class="text-brand">Read More »</span>
+                    </a>
+                </div>
+                <!-- Leadership -->
+                <div class="bento-surface p-8 mb-16 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">Meet our Leadership Team</h3>
+                    <p class="text-slate-400 mb-6">Our leadership team leverages the power of transnational connections to build communities that support the advancement of new generations of scholars working across borders.</p>
+                    <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg">Meet our Leadership Team</a>
+                </div>
+                <!-- Network -->
+                <div class="bento-surface p-8 mb-16">
+                    <h3 class="text-2xl font-bold text-white mb-4">Our Network</h3>
+                    <p class="text-slate-400 mb-6">Our network includes over 20,000 scholars and students working across borders at thousands of universities worldwide.</p>
+                    <div class="grid grid-cols-3 gap-8 text-center">
+                        <div>
+                            <p class="text-4xl font-bold text-brand">115</p>
+                            <p class="text-slate-400">Countries</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-brand">20,000+</p>
+                            <p class="text-slate-400">Scholars and Students</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-brand">2,353</p>
+                            <p class="text-slate-400">Universities</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+                <div class="bento-surface p-8 mb-16">
+                    <h3 class="text-2xl font-bold text-white mb-4">Stay Informed and Inspired</h3>
+                    <p class="text-slate-400 mb-6">Be the first to know about upcoming programs and opportunities. No spam. We promise. Unsubscribe anytime.</p>
+                    <div class="flex gap-4">
+                        <input type="email" placeholder="Email" class="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400">
+                        <button class="btn-star px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-[0.1em]">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-32 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+            <div class="max-w-xs space-y-8">
+                <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" class="h-6 w-auto">
+                <p class="text-[10px] text-white leading-relaxed font-light uppercase tracking-[0.15em]">
+                    The Society of Transnational Academic Researchers (STAR) is a member-supported 501(c)(3) non-profit organization registered in the state of Maryland (US) PO Box 374 Perry Hall, MD 21128 USA.
+                </p>
+            </div>
+            <div class="flex gap-20">
+                <div class="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-white">
+                    <span class="text-white">Follow Us</span>
+                    <a href="#" class="hover:text-brand transition">LinkedIn</a>
+                    <a href="#" class="hover:text-brand transition">Twitter</a>
+                    <a href="#" class="hover:text-brand transition">YouTube</a>
+                    <a href="#" class="hover:text-brand transition">Facebook</a>
+                </div>
+                <div class="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-white text-right">
+                    <span class="text-white">Support</span>
+                    <a href="#" class="hover:text-brand transition">Legal Terms</a>
+                    <a href="#" class="hover:text-brand transition">Privacy</a>
+                    <a href="#" class="hover:text-brand transition">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 text-center text-[10px] font-bold text-white uppercase tracking-widest">
+            © 2026 STAR Scholars Network. Driven by Impact.
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Circular Particle texture generator
+        const createCircleTexture = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64; canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            ctx.beginPath();
+            ctx.arc(32, 32, 28, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            return new THREE.CanvasTexture(canvas);
+        };
+
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        for (let i = 0; i < 16000; i++) {
+            vertices.push(
+                THREE.MathUtils.randFloatSpread(2000),
+                THREE.MathUtils.randFloatSpread(2000),
+                THREE.MathUtils.randFloatSpread(2000)
+            );
+        }
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        
+        const material = new THREE.PointsMaterial({ 
+            color: 0x5490D9, 
+            size: 3, 
+            map: createCircleTexture(),
+            transparent: true, 
+            opacity: 0.5,
+            alphaTest: 0.5 
+        });
+
+        const starField = new THREE.Points(geometry, material);
+        scene.add(starField);
+
+        camera.position.z = 100;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            starField.rotation.y += 0.0003;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Intersection Observer for scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    gsap.to(entry.target, { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
