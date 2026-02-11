@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,27 +13,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        :root { 
-            --star-blue: #5490D9; 
-            --star-dark: #030712; 
+        :root {
+            --star-blue: #5490D9;
+            --star-dark: #030712;
         }
 
         /* Lightweight Typography (Canva Sans Style) */
-        body { 
-            font-family: 'Canva Sans', sans-serif; 
-            background-color: var(--star-dark); 
-            color: #f8fafc; 
-            font-weight: 300; 
-            overflow-x: hidden; 
+        body {
+            font-family: 'Canva Sans', sans-serif;
+            background-color: var(--star-dark);
+            color: #f8fafc;
+            font-weight: 300;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, b, strong { font-weight: 500; }
+        h1,
+        h2,
+        h3,
+        h4,
+        b,
+        strong {
+            font-weight: 500;
+        }
 
         #canvas-container {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
             background: radial-gradient(circle at center, #0a1329 0%, #030712 100%);
         }
@@ -64,32 +74,101 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             transition: background 0.2s;
         }
-        .impact-table-row:hover { background: rgba(84, 144, 217, 0.05); }
+
+        .impact-table-row:hover {
+            background: rgba(84, 144, 217, 0.05);
+        }
 
         /* Animated Status Dot */
         .status-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             background: #10b981;
             border-radius: 50%;
             box-shadow: 0 0 12px #10b981;
             animation: pulse 2.5s infinite;
         }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.9); } }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+        }
 
         /* Tech Suite Buttons */
         .btn-star {
             background-color: var(--star-blue);
             transition: all 0.3s ease;
         }
+
         .btn-star:hover {
             opacity: 0.9;
             transform: translateY(-1px);
             box-shadow: 0 10px 20px -5px rgba(84, 144, 217, 0.3);
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Custom Tooltip */
+        .award-tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .award-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 180px;
+            background-color: #0F172A;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 100;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -90px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        .award-tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #0F172A transparent transparent transparent;
+        }
+
+        .award-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
+
 <body class="antialiased selection:bg-blue-500/30">
 
     <div id="canvas-container"></div>
@@ -98,377 +177,726 @@
         <div class="max-w-[1400px] mx-auto flex justify-between items-center">
             <div class="flex items-center gap-12">
                 <a href="/">
-                    <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" 
-                         alt="Star Scholars" class="h-8 md:h-10 w-auto">
+                    <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1"
+                        alt="Star Scholars" class="h-8 md:h-10 w-auto">
                 </a>
-                <div class="hidden xl:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
-                    <a href="#" class="hover:text-white transition">Who We Are</a>
-                    <a href="#" class="hover:text-white transition">Get Involved</a>
-                    <a href="#" class="hover:text-white transition">Membership</a>
+                <div
+                    class="hidden xl:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <a href="https://app.starscholars.org/careergps" class="hover:text-white transition">STAR GPS</a>
+                    <a href="https://app.starscholars.org/events" class="hover:text-white transition">Conferences &
+                        Events</a>
+                    <a href="https://starscholars.org/membership-overview/"
+                        class="hover:text-white transition">Membership</a>
                 </div>
             </div>
             <div class="flex items-center gap-6">
-                <a href="https://app.starscholars.org/login" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">Admin Login</a>
-                <a href="https://app.starscholars.org/" class="bg-white text-slate-900 px-7 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl">Join Network</a>
+                <a href="https://starscholars.org/"
+                    class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">STAR
+                    Website</a>
+                <a href="https://app.starscholars.org/"
+                    class="bg-white text-slate-900 px-7 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl">Login
+                    to our Network</a>
             </div>
         </div>
     </nav>
 
     <main class="relative z-10">
-        
-        <section class="relative pt-24 pb-32 px-6">
-            <div class="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-7 space-y-8" id="hero-text">
-                    <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+
+        <section class="relative pt-16 pb-8 px-6">
+            <div class="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6" id="hero-text">
+                    <div
+                        class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
                         <span class="status-dot"></span>
-                        <span class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.25em]">Upward Academic Mobility 2026</span>
+                        <span class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.25em]">Upward Academic
+                            Mobility 2026</span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight">
                         How many STAR <span class="text-[#5490D9]"><br> Circles</span> have you led?
                     </h1>
-                    <p class="text-lg text-slate-400 font-light leading-relaxed max-w-xl">
-                        Join our vibrant community of scholars and unlock the power of cross border collaboration. Feel proud about the impact you make beyond traditional research metrics.
+                    <p class="text-base text-slate-400 font-light leading-relaxed max-w-xl">
+                        Join our vibrant community of scholars and unlock the power of cross border collaboration. Feel
+                        proud about the impact you make beyond traditional research metrics.
                     </p>
-                    <div class="flex flex-wrap gap-6 pt-4">
-                        <a href="https://app.starscholars.org/" class="btn-star text-white px-12 py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-2xl">Join the Network</a>
-                        <button class="bg-white/5 border border-white/10 text-white px-12 py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition">Watch Vision</button>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="https://app.starscholars.org/circles"
+                            class="btn-star text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-2xl">Join
+                            a STAR Circle Today</a>
+                        <a href="https://app.starscholars.org/influential-people"
+                            class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition">View
+                            Influential STAR Scholars</a>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5 grid grid-cols-2 gap-4" id="hero-bento">
-                    <div class="bento-surface p-8 col-span-2 relative group overflow-hidden">
-                        <p class="text-[#5490D9] font-bold text-[10px] uppercase tracking-[0.3em] mb-4">Latest Forum</p>
-                        <h3 class="text-xl font-medium text-white leading-snug">Advancing AI, Equity, & First-Gen Success</h3>
-                        <p class="text-xs text-slate-500 mt-4 leading-relaxed font-light italic">Marking the 8th Anniversary of the STAR Scholars Network</p>
-                        <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div class="lg:col-span-5 flex flex-col gap-4" id="hero-bento">
+                    <!-- Chatbot Interface -->
+                    <div
+                        class="bento-surface p-6 relative group overflow-hidden border border-brand/20 hover:border-brand/50 transition-all duration-300">
+                        <div class="absolute top-0 right-0 p-4 opacity-20">
+                            <svg class="w-12 h-12 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Ask our AMA Chatbot</h3>
+                        <p class="text-xs text-slate-400 mb-4">For any information regarding STAR Circles</p>
+
+                        <div class="bg-white/5 rounded-lg p-3 flex items-center gap-3 mb-4 border border-white/5">
+                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-xs text-slate-300 italic">"How can I join the STAR Mentorship
+                                Circle: Millennium Scholars?"</span>
+                        </div>
+
+                        <a href="https://app.starscholars.org/ama"
+                            class="inline-flex items-center justify-center w-full btn-star text-white py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest hover:brightness-110 transition shadow-lg group-hover:shadow-brand/20">
+                            Click Here to Chat
+                        </a>
                     </div>
-                    <div class="bento-surface p-6">
-                        <p class="text-slate-500 font-bold text-[9px] uppercase tracking-widest mb-2">Awards</p>
-                        <h4 class="font-bold text-sm text-white leading-snug">Chomsky Awards 2025</h4>
-                        <p class="text-[10px] text-slate-500 mt-2">Winners announced for previous year</p>
+
+                    <!-- Metrics Grid (Smaller & Moved Down) -->
+                    <div class="grid grid-cols-3 gap-3 mt-2">
+                        <div
+                            class="bento-surface p-4 text-center flex flex-col justify-center group hover:bg-white/5 transition duration-500">
+                            <p
+                                class="text-[#5490D9] font-black text-xl tracking-tighter mb-1 group-hover:scale-110 transition duration-500">
+                                1,840+</p>
+                            <p
+                                class="text-[8px] font-bold text-slate-500 uppercase tracking-widest group-hover:text-slate-300 transition duration-500">
+                                Monthly Circle Participants</p>
+                        </div>
+                        <div
+                            class="bento-surface p-4 text-center flex flex-col justify-center group hover:bg-white/5 transition duration-500">
+                            <p
+                                class="text-[#5490D9] font-black text-xl tracking-tighter mb-1 group-hover:scale-110 transition duration-500">
+                                20,000</p>
+                            <p
+                                class="text-[8px] font-bold text-slate-500 uppercase tracking-widest group-hover:text-slate-300 transition duration-500">
+                                Total Circle Enrollments</p>
+                        </div>
+                        <div
+                            class="bento-surface p-4 text-center flex flex-col justify-center group hover:bg-white/5 transition duration-500">
+                            <p
+                                class="text-[#5490D9] font-black text-xl tracking-tighter mb-1 group-hover:scale-110 transition duration-500">
+                                115+</p>
+                            <p
+                                class="text-[8px] font-bold text-slate-500 uppercase tracking-widest group-hover:text-slate-300 transition duration-500">
+                                Countries
+                                Represented</p>
+                        </div>
                     </div>
-                    <div class="bento-surface p-6 text-center">
-                        <p class="text-[#5490D9] font-black text-2xl tracking-tighter mb-1">115+</p>
-                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Countries</p>
+                </div>
+            </div>
+
+            <!-- President's Message Notification Bar -->
+            <div class="max-w-5xl mx-auto mt-36 md:mt-24 px-4 relative z-30">
+                <div onclick="openPresidentModal()"
+                    class="group relative p-[1px] rounded-2xl overflow-hidden cursor-pointer active:scale-[0.98] transition-all duration-300">
+                    <!-- Gradient Border Effect -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-brand via-purple-500 to-brand bg-[length:200%_auto] animate-gradient-x opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+
+                    <div
+                        class="relative bg-[#0B1120]/90 backdrop-blur-xl p-3 md:p-4 rounded-[15px] flex items-center gap-4 shadow-2xl">
+                        <!-- Left side: Picture in circle -->
+                        <div class="relative shrink-0">
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-brand/50 shadow-lg group-hover:border-brand transition-colors">
+                                <img src="./images/president.png" alt="Dr. Uttam Gaulee"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-[#0B1120] rounded-full">
+                            </div>
+                        </div>
+
+                        <!-- Middle content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-white text-xs md:text-sm font-medium leading-tight lg:text-base">
+                                <span class="text-brand font-bold mr-1">NOTIFICATION:</span>
+                                You've got a new message from STAR President
+                            </p>
+                            <p class="text-slate-400 text-[10px] md:text-xs mt-1 truncate font-light italic">"Hello STAR
+                                family. As we enter 2026, we’re excited to share..."</p>
+                        </div>
+
+                        <!-- Right side button -->
+                        <div class="shrink-0">
+                            <button
+                                class="bg-brand hover:bg-brand-light text-white text-[10px] md:text-xs font-bold py-2 px-4 md:px-6 rounded-full uppercase tracking-widest transition-all shadow-lg shadow-brand/25 flex items-center gap-2">
+                                <span>Read Message</span>
+                                <svg class="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 border-y border-white/5 bg-white/5 px-6">
+
+
+
+
+
+
+
+
+
+        <!-- Careerlink Partnership Section -->
+        <section class="pt-24 pb-8 px-8 border-t border-white/5">
+            <div class="max-w-4xl mx-auto">
+                <a href="https://www.careerlink.ai/" target="_blank"
+                    class="bento-surface group p-4 md:p-6 rounded-2xl flex flex-col md:flex-row items-center gap-6 border border-white/5 hover:border-brand/40 transition-all duration-500 block">
+                    <!-- Logo -->
+                    <div class="shrink-0">
+                        <img src="NewCareerlink Logo.png" alt="Careerlink Logo"
+                            class="h-8 md:h-10 w-auto object-contain">
+                    </div>
+
+                    <!-- Vertical Divider (Desktop only) -->
+                    <div class="hidden md:block w-px h-12 bg-white/10"></div>
+
+                    <!-- Content -->
+                    <div class="flex-1 text-center md:text-left">
+                        <p class="text-white text-sm md:text-base font-semibold leading-tight mb-1">
+                            We're partnering with <span class="text-brand">Careerlink AI</span> to empower the use of AI
+                            in research.
+                        </p>
+                        <p
+                            class="text-slate-500 text-[10px] md:text-xs font-light uppercase tracking-widest leading-relaxed">
+                            You'll automatically be signed up on the Careerlink platform to ensure you have seamless
+                            access to AI research tools as well as resources.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="py-12 px-6 border-t border-white/5">
             <div class="max-w-[1400px] mx-auto">
                 <div class="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
                     <div class="max-w-2xl">
-                        <h2 class="text-3xl font-semibold text-white tracking-tight leading-none">Star Circle: Impact Ranking</h2>
-                        <p class="text-slate-500 text-sm mt-4 font-light">A universal adopted ranking system for educators and institutions focused on engagement.</p>
+                        <h2 class="text-3xl font-semibold text-white tracking-tight leading-none">University Impact
+                            Ranking</h2>
+                        <p class="text-slate-500 text-sm mt-4 font-light">The global index for institutions committed to
+                            transnational research engagement and community impact.</p>
                     </div>
-                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">Update Cycle: January 2026</span>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">Update Cycle: January
+                        2026</span>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8">
-                    <div class="bento-surface overflow-hidden flex flex-col">
-                        <div class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest">
-                            Top Circle Leaders
-                        </div>
-                        <table class="w-full text-left text-xs">
+
+            </div>
+
+            <div class="max-w-[1400px] mx-auto">
+                <div class="bento-surface overflow-hidden flex flex-col">
+                    <div
+                        class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest">
+                        Top 10 Global Institutions
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm min-w-[900px]">
                             <thead>
-                                <tr>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest">Name</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Circles Led</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Participations</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Countries</th>
+                                <tr class="bg-white/5">
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-left">
+                                        #</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                                        Institution</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">
+                                        Circles Led</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">
+                                        Total Members</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">
+                                        Authentic Members</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">
+                                        Year Joined</th>
+                                    <th
+                                        class="px-6 py-3 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right text-brand">
+                                        Impact Score</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-white/5">
                                 <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Dr. Sarah Jenkins</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">24</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">180</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">15</td>
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">1</td>
+                                    <td class="px-6 py-4 text-slate-200 font-semibold tracking-tight">Kathmandu
+                                        University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">21</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">207</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">174</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2025</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">9.8</td>
                                 </tr>
                                 <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Prof. Amit Khana</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">19</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">140</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">12</td>
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">2</td>
+                                    <td class="px-6 py-4 text-slate-200">Tribhuvan University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">6</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">58</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">47</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2024</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">4.2</td>
                                 </tr>
                                 <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Dr. Helena Vost</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">15</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">120</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">10</td>
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">3</td>
+                                    <td class="px-6 py-4 text-slate-200">Morgan State University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">4</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">39</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">32</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2024</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">3.5</td>
+                                </tr>
+                                <tr class="impact-table-row bg-white/5 font-semibold">
+                                    <td class="px-6 py-4 text-left text-blue-400 font-bold">4</td>
+                                    <td
+                                        class="px-6 py-4 text-slate-200 border-l-2 border-brand pl-4 flex items-center gap-2">
+                                        O.P. Jindal Global University
+                                        <span class="award-tooltip">
+                                            <span
+                                                class="inline-flex items-center justify-center w-5 h-5 bg-yellow-500 rounded-full text-[12px] text-black shadow-lg shrink-0">🪙</span>
+                                            <span class="tooltip-text">Global Education for Peace Award Winner</span>
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right text-slate-400">3</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">21</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">16</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2024</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.9</td>
                                 </tr>
                                 <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Prof. Julian Chen</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">12</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">100</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">8</td>
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">5</td>
+                                    <td class="px-6 py-4 text-slate-200">University of Algiers</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">20</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">18</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2023</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.7</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">6</td>
+                                    <td class="px-6 py-4 text-slate-200">Istanbul Aydin University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">1</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">9</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">9</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2025</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.7</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">7</td>
+                                    <td class="px-6 py-4 text-slate-200">Federal University Wukari</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">12</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">3</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2025</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.6</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">8</td>
+                                    <td class="px-6 py-4 text-slate-200">Nepal Open University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">17</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">14</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2024</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.5</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">9</td>
+                                    <td class="px-6 py-4 text-slate-200">Michigan State University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">12</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">7</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2024</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.4</td>
+                                </tr>
+                                <tr class="impact-table-row">
+                                    <td class="px-6 py-4 text-left text-slate-500 font-bold">10</td>
+                                    <td class="px-6 py-4 text-slate-200">Musashino University</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">1</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">7</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">3</td>
+                                    <td class="px-6 py-4 text-right text-slate-400">2025</td>
+                                    <td class="px-6 py-4 text-right text-brand font-bold text-lg">1.2</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="p-6 pt-4">
-                            <div class="text-center">
-                                <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.1em] shadow-lg">Browse More Leaders</a>
-                            </div>
-                        </div>
                     </div>
-
-                    <div class="bento-surface flex flex-col">
-                        <div class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest">
-                            Top Star Institutions
-                        </div>
-                        <table class="w-full text-left text-xs">
-                            <thead>
-                                <tr>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest">Institution</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Impact Points</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Participations</th>
-                                    <th class="px-6 py-2 text-[10px] font-bold uppercase text-slate-400 tracking-widest text-right">Countries</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">O.P. Jindal University</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">142</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">250</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">20</td>
-                                </tr>
-                                <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">American University (UAE)</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">98</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">180</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">15</td>
-                                </tr>
-                                <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Stanford Academic Hub</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">76</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">150</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">12</td>
-                                </tr>
-                                <tr class="impact-table-row">
-                                    <td class="px-6 py-4 text-slate-200">Harvard University</td>
-                                    <td class="px-6 py-4 text-right text-brand font-bold">65</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">130</td>
-                                    <td class="px-6 py-4 text-right text-slate-200">10</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="p-6 pt-4">
-                            <div class="text-center">
-                                <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.1em] shadow-lg">Browse More Institutions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bento-surface p-4 text-center flex flex-col justify-center mt-8 max-w-md mx-auto">
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-3xl font-light text-white mb-2 tracking-tighter">1,840+</p>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Monthly Active Participants</p>
-                        </div>
-                        <div class="w-8 h-[1px] bg-white/10 mx-auto"></div>
-                        <div>
-                            <p class="text-xl font-light text-white mb-2 tracking-tighter">20,000</p>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Community Members</p>
+                    <div class="p-6 pt-4">
+                        <div class="text-center">
+                            <a href="rankings.html"
+                                class="btn-star text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.1em] shadow-lg">Browse
+                                All Top 50 Institutions</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+            </div>
         </section>
 
-        <section class="py-40 px-8">
+        <section class="py-20 px-8">
             <div class="max-w-[1400px] mx-auto">
-                <h2 class="text-4xl font-semibold text-white tracking-tight mb-24 text-center">Discover Our Programs</h2>
+                <h2 class="text-4xl font-semibold text-white tracking-tight mb-24 text-center">Discover Our
+                    Circle-Based Programs
+                </h2>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    <div class="bento-surface group overflow-hidden">
+                    <a href="https://app.starscholars.org/usecase/mentorship-guiding-advising-peers-fellows-researchers-7d77f93a2b"
+                        class="bento-surface group overflow-hidden block">
                         <div class="h-60 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Mentorship">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0"
+                                alt="Mentorship">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         </div>
                         <div class="p-8">
                             <h4 class="text-white font-bold text-lg mb-2">Millennium Scholars</h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborate with global mentors to advance transnational scholarship.</p>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborate with global
+                                mentors to advance transnational scholarship.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="bento-surface group overflow-hidden">
+                    <a href="https://app.starscholars.org/usecase/training-skill-mastery-ai-integration-3c1540cbfb"
+                        class="bento-surface group overflow-hidden block">
                         <div class="h-60 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Training">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0"
+                                alt="Training">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         </div>
                         <div class="p-8">
                             <h4 class="text-white font-bold text-lg mb-2">Certified Scholar</h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Engaged research and teaching for high social impact circles.</p>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Engaged research and
+                                teaching for high social impact circles.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="bento-surface group overflow-hidden">
+                    <a href="https://app.starscholars.org/usecase/project-research-collaborative-rd-team-building-e09ab1007b"
+                        class="bento-surface group overflow-hidden block">
                         <div class="h-60 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Research">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0"
+                                alt="Research">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         </div>
                         <div class="p-8">
                             <h4 class="text-white font-bold text-lg mb-2">Fellowship Program</h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Transnational fellowships supporting emerging scholars worldwide.</p>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Transnational fellowships
+                                supporting emerging scholars worldwide.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="bento-surface group overflow-hidden">
+                    <a href="https://app.starscholars.org/usecase/journals-publications-cross-border-collaboration-292f2092a9"
+                        class="bento-surface group overflow-hidden block">
                         <div class="h-60 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0" alt="Publishing">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-1000 grayscale group-hover:grayscale-0"
+                                alt="Publishing">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         </div>
                         <div class="p-8">
                             <h4 class="text-white font-bold text-lg mb-2">STAR Journals</h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborative publishing through global autonomous circles.</p>
+                            <p class="text-[11px] text-slate-400 leading-relaxed font-light">Collaborative publishing
+                                through global autonomous circles.</p>
+                        </div>
+                    </a>
+                </div>
+        </section>
+
+
+
+        <section class="pt-20 pb-0 px-8 relative">
+            <div class="max-w-[1000px] mx-auto">
+                <h2 class="text-3xl font-semibold text-white tracking-tight mb-12 text-center">Why Circles Matter?</h2>
+
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="bento-surface group overflow-hidden transition-all duration-300">
+                        <button class="w-full flex items-center justify-between p-6 text-left"
+                            onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-white group-hover:text-brand transition-colors">What
+                                makes
+                                STAR Circles unique?</span>
+                            <span
+                                class="text-brand text-2xl font-light transition-transform duration-300 transform rotate-0"
+                                data-icon="true">+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                            <div class="p-6 pt-0 text-slate-400 font-light leading-relaxed text-justify">
+                                STAR Circles provide a very simple way to participate, learn, and lead to make an
+                                impact, keeping cross-border collaboration at the center. Members begin by participating
+                                in STAR Circles run by certified Circle leaders, learn required skills and methodology,
+                                then start leading new Circles of their interest and expertise.
+                            </div>
                         </div>
                     </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="bento-surface group overflow-hidden transition-all duration-300">
+                        <button class="w-full flex items-center justify-between p-6 text-left"
+                            onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-white group-hover:text-brand transition-colors">How do
+                                STAR
+                                Circles work?</span>
+                            <span
+                                class="text-brand text-2xl font-light transition-transform duration-300 transform rotate-0"
+                                data-icon="true">+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                            <div class="p-6 pt-0 text-slate-400 font-light leading-relaxed text-justify">
+                                Every STAR program now runs as a "Circle": a self-managed cohort where members
+                                collaborate on cross-border research, training, or mentorship. These are led by
+                                Certified STAR Circle Leaders without needing constant oversight, empowering members to
+                                take full ownership of their work.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="bento-surface group overflow-hidden transition-all duration-300">
+                        <button class="w-full flex items-center justify-between p-6 text-left"
+                            onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-white group-hover:text-brand transition-colors">How is
+                                success measured in a Circle?</span>
+                            <span
+                                class="text-brand text-2xl font-light transition-transform duration-300 transform rotate-0"
+                                data-icon="true">+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                            <div class="p-6 pt-0 text-slate-400 font-light leading-relaxed text-justify">
+                                We are moving beyond traditional metrics like h-index. Instead, we use the "Star Impact
+                                Ranking," an activity-based score determined by how many Circles you lead and engage
+                                with. This "Move Beyond Metrics & Embrace Impact" philosophy values teaching, sharing
+                                ideas, and building valuable cross-border collaborations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="bento-surface group overflow-hidden transition-all duration-300">
+                        <button class="w-full flex items-center justify-between p-6 text-left"
+                            onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-white group-hover:text-brand transition-colors">What
+                                programs are available as Circles?</span>
+                            <span
+                                class="text-brand text-2xl font-light transition-transform duration-300 transform rotate-0"
+                                data-icon="true">+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                            <div class="p-6 pt-0 text-slate-400 font-light leading-relaxed text-justify">
+                                All existing initiatives are now integrated as STAR Programs, all of which will have
+                                their respective Circles, including STAR Research
+                                Projects (Fellowship Programs), STAR Training (Certified Research Scholar), STAR
+                                Mentorship (Millennium Scholars Program), and STAR Journals (Cross-Border
+                                Collaboration).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="bento-surface group overflow-hidden transition-all duration-300">
+                        <button class="w-full flex items-center justify-between p-6 text-left"
+                            onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-white group-hover:text-brand transition-colors">Can I
+                                lead
+                                my own STAR Circle?</span>
+                            <span
+                                class="text-brand text-2xl font-light transition-transform duration-300 transform rotate-0"
+                                data-icon="true">+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                            <div class="p-6 pt-0 text-slate-400 font-light leading-relaxed text-justify">
+                                Any researcher or educator can apply or be nominated as a Certified STAR Circle Leader.
+                                Once certified, you gain the authority to launch and lead your own Circles. A high Star
+                                Impact Ranking is also a path to prestigious awards, including the Noam Chomsky awards.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section class="py-32 bg-gradient-to-br from-white via-slate-50 to-blue-50 text-slate-900 rounded-[50px] mx-4 relative z-10 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%235490D9" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
-            <div class="max-w-6xl mx-auto px-8 relative z-10">
-                <div class="text-center mb-24 reveal">
-                    <span class="text-brand font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">What Guides Us</span>
-                    <h2 class="text-4xl font-semibold tracking-tight text-slate-800">The values we live by</h2>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 100ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        <!-- Nomination CTA Section - Slim Bar Style -->
+        <section class="pt-4 pb-32 px-8">
+            <div class="max-w-4xl mx-auto">
+                <a href="https://app.starscholars.org/nominate-circle-leader" target="_blank"
+                    class="bento-surface group p-3 pr-4 md:pr-6 rounded-2xl flex items-center gap-4 hover:shadow-brand/20 transition-all duration-300 border border-white/5 hover:border-brand/30">
+
+                    <!-- Icon/Avatar -->
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-brand/20 group-hover:border-brand/50 transition-colors flex items-center justify-center bg-brand/10">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-brand" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                </path>
                             </svg>
                         </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Human-to-Human Relationships</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Building authentic human-to-human relationships among the people in the network, both online and in-person, to build trust and solidarity.</p>
-                    </div>
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 200ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/>
-                            </svg>
-                        </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Alternative Futures</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Grasping the deep challenges, injustices, and unsustainability of current systems in order to imagine alternative futures and create a more humane world.</p>
-                    </div>
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 300ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5 16L3 5l5.5 0L12 1l3.5 4H21l-2 11H5m14 3c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-1h14v1z"/>
-                            </svg>
-                        </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Distributed Leadership</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Empowering leaders of all kinds to drive the activities of the network, including organizing new initiatives, spreading our message, and shaping our vision.</p>
                     </div>
 
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 400ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                            </svg>
-                        </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Open Access</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Pioneering open access resources that empower members to leverage the power of networks to build their skills, knowledge, and expertise.</p>
+                    <!-- Text -->
+                    <div class="flex-1 min-w-0">
+                        <p
+                            class="text-white text-sm md:text-base font-semibold truncate group-hover:text-brand transition-colors">
+                            Wish to apply or nominate someone as a circle leader?
+                        </p>
+                        <p class="text-slate-500 text-[10px] md:text-xs font-light uppercase tracking-widest mt-0.5">
+                            Launch Your Global Impact
+                        </p>
                     </div>
 
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 500ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L21 9l-9-6zM12 7.58l2.98 1.62L12 11.18l-2.98-1.62L12 7.58zM12 17.18l-3-1.63v-2.98l3 1.63v2.98z"/>
+                    <!-- Button -->
+                    <div class="shrink-0">
+                        <span
+                            class="bg-brand/10 group-hover:bg-brand text-brand group-hover:text-white text-[10px] md:text-xs font-bold py-2 px-4 md:px-6 rounded-full uppercase tracking-widest transition-all shadow-lg shadow-brand/10 flex items-center gap-2">
+                            <span>Click Here</span>
+                            <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7">
+                                </path>
                             </svg>
-                        </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Continuous Learning</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Engaging in continuous learning with our members to understand the trends, resources, and needs of the entire network and their communities.</p>
+                        </span>
                     </div>
-
-                    <div class="space-y-6 text-center group reveal" style="transition-delay: 600ms;">
-                        <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition duration-300">
-                            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-                            </svg>
-                        </div>
-                        <h5 class="font-bold text-brand uppercase text-[11px] tracking-widest">Multilingual</h5>
-                        <p class="text-xs text-slate-600 leading-relaxed font-light max-w-xs mx-auto">Communicating in 1000's of local languages to include and involve as many people as possible in building this community and shaping its future.</p>
-                    </div>
-                </div>
+                </a>
             </div>
         </section>
 
-        <section class="py-32 px-6">
+
+
+
+
+
+
+
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-semibold tracking-tight text-white">Move Beyond Research Metrics & Embrace
+                    Real Impact:
+                </h2>
+                <p class="mt-4 text-slate-400 font-light"></p>
+            </div>
+
+            <div class="space-y-4 max-w-5xl mx-auto">
+                <!-- Step 1 -->
+                <a href="https://app.starscholars.org/usecases"
+                    class="group bento-surface block p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center gap-8">
+                        <span
+                            class="text-4xl font-bold text-slate-700/50 group-hover:text-brand/50 transition duration-300">1</span>
+                        <div class="flex-1">
+                            <h3
+                                class="text-xl font-bold text-white group-hover:text-brand transition duration-300 mb-1">
+                                Identify STAR Programs</h3>
+                            <p class="text-sm text-slate-400 font-light">Recognize significant program areas for
+                                cross-border collaboration</p>
+                        </div>
+                        <span
+                            class="hidden md:inline-flex bg-white/10 text-slate-300 px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest group-hover:bg-brand group-hover:text-white transition duration-300">Next
+                            ›</span>
+                    </div>
+                </a>
+
+                <!-- Step 2 -->
+                <a href="https://app.starscholars.org/circles"
+                    class="group bento-surface block p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center gap-8">
+                        <span
+                            class="text-4xl font-bold text-slate-700/50 group-hover:text-brand/50 transition duration-300">2</span>
+                        <div class="flex-1">
+                            <h3
+                                class="text-xl font-bold text-white group-hover:text-brand transition duration-300 mb-1">
+                                Enroll in STAR Circles</h3>
+                            <p class="text-sm text-slate-400 font-light">Develop skills collaboratively with peers
+                                to solve real-world challenges</p>
+                        </div>
+                        <span
+                            class="hidden md:inline-flex bg-white/10 text-slate-300 px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest group-hover:bg-brand group-hover:text-white transition duration-300">Next
+                            ›</span>
+                    </div>
+                </a>
+
+                <!-- Step 3 -->
+                <a href="https://app.starscholars.org/resourcehub"
+                    class="group bento-surface block p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center gap-8">
+                        <span
+                            class="text-4xl font-bold text-slate-700/50 group-hover:text-brand/50 transition duration-300">3</span>
+                        <div class="flex-1">
+                            <h3
+                                class="text-xl font-bold text-white group-hover:text-brand transition duration-300 mb-1">
+                                Discover Journals & Articles</h3>
+                            <p class="text-sm text-slate-400 font-light">Explore resources and publications from
+                                STAR community members</p>
+                        </div>
+                        <span
+                            class="hidden md:inline-flex bg-white/10 text-slate-300 px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest group-hover:bg-brand group-hover:text-white transition duration-300">Next
+                            ›</span>
+                    </div>
+                </a>
+
+                <!-- Step 4 -->
+                <a href="https://app.starscholars.org/careergps"
+                    class="group bento-surface block p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-center gap-8">
+                        <span
+                            class="text-4xl font-bold text-slate-700/50 group-hover:text-brand/50 transition duration-300">4</span>
+                        <div class="flex-1">
+                            <h3
+                                class="text-xl font-bold text-white group-hover:text-brand transition duration-300 mb-1">
+                                Copilots for Cross-Border Research</h3>
+                            <p class="text-sm text-slate-400 font-light">Use AI copilots to discover community,
+                                tools and resources to grow</p>
+                        </div>
+                        <span
+                            class="hidden md:inline-flex bg-white/10 text-slate-300 px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest group-hover:bg-brand group-hover:text-white transition duration-300">Next
+                            ›</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </section>
+
+
+
+        <section class="pt-24 pb-12 px-8 relative bg-slate-950/20">
             <div class="max-w-6xl mx-auto">
-                <!-- Announcements -->
-                <div class="grid md:grid-cols-2 gap-8 mb-16">
-                    <div class="bento-surface p-8">
-                        <h3 class="text-xl font-bold text-white mb-4">O.P. Jindal Global University and American University in the Emirates win Global Education for Peace Award</h3>
-                        <a href="#" class="text-brand font-bold">Learn More</a>
-                    </div>
-                    <div class="bento-surface p-8">
-                        <h3 class="text-xl font-bold text-white mb-4">STAR Global Conference 2026</h3>
-                        <p class="text-slate-400 mb-4">Hosted by OP Jindal Global University 10-14 December, 2026 in Sonipat, India</p>
-                        <a href="#" class="text-brand font-bold">Learn More</a>
-                    </div>
+                <!-- Country Directors -->
+                <div class="bento-surface p-8 mb-16 text-center">
+                    <h3 class="text-white text-xs font-bold uppercase tracking-widest mb-2"></h3>
+                    <h4 class="text-2xl font-bold text-white mb-4">Want to run country-specific circles?</h4>
+                    <p class="text-slate-400 mb-6">Our country directors serve as catalysts for community-building and
+                        collaboration.</p>
+                    <a href="https://starscholars.org/country-directors/" target="_blank"
+                        class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg">Meet
+                        our Country Directors</a>
                 </div>
-                <!-- More announcements -->
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="bento-surface p-6 text-center">
-                        <h4 class="text-lg font-bold text-white mb-2">Academic Wellness</h4>
-                        <a href="#" class="text-brand font-bold">Learn More</a>
-                    </div>
-                    <div class="bento-surface p-6">
-                        <h4 class="text-lg font-bold text-white mb-2">Edward J. Valeau Scholarship Fund</h4>
-                        <p class="text-slate-400 text-sm mb-4">STAR Scholars Network establishes Edward J. Valeau Scholarship to assist emerging scholars from around the world.</p>
-                        <a href="#" class="text-brand font-bold">Donate Today!</a>
-                    </div>
-                    <div class="bento-surface p-6">
-                        <h4 class="text-lg font-bold text-white mb-2">NEW BOOK – Transforming Lives at the Institutional Level: Equity Promotion Initiatives Across the World</h4>
-                        <p class="text-slate-400 text-sm mb-4">Transforming Lives at the Institutional Level explores innovative higher education initiatives from around the world aimed at enhancing access and success for underrepresented and marginalized groups.</p>
-                        <a href="#" class="text-brand font-bold">Learn More</a>
-                    </div>
-                </div>
-                <!-- News items -->
-                <div class="space-y-4 mb-16">
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">Statement – World Meditation Day 2025</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">STAR Global Futures Forum</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">STAR Scholars Network Announces 2025 A. Noam Chomsky Global Connections Award Winners</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">Celebrating First-Generation College Student Month</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">STAR Scholars Network Welcomes Dr. George R. Boggs to Its Advisory Board</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                    <a href="#" class="block bento-surface p-4 hover:bg-white/10 transition">
-                        <h5 class="text-white font-bold">President’s Statement on World Mental Health Day 2025</h5>
-                        <span class="text-brand">Read More »</span>
-                    </a>
-                </div>
+
                 <!-- Leadership -->
                 <div class="bento-surface p-8 mb-16 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-4">Meet our Leadership Team</h3>
-                    <p class="text-slate-400 mb-6">Our leadership team leverages the power of transnational connections to build communities that support the advancement of new generations of scholars working across borders.</p>
-                    <a href="#" class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg">Meet our Leadership Team</a>
+                    <h3 class="text-2xl font-bold text-white mb-4">Want to connect with our visionary leaders?</h3>
+                    <p class="text-slate-400 mb-6">Our leadership team leverages the power of transnational connections
+                        to build communities that support the advancement of new generations of scholars working across
+                        borders.</p>
+                    <a href="https://starscholars.org/leadership-team/" target="_blank"
+                        class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg">Meet
+                        our Leadership Team</a>
                 </div>
                 <!-- Network -->
                 <div class="bento-surface p-8 mb-16">
                     <h3 class="text-2xl font-bold text-white mb-4">Our Network</h3>
-                    <p class="text-slate-400 mb-6">Our network includes over 20,000 scholars and students working across borders at thousands of universities worldwide.</p>
+                    <p class="text-slate-400 mb-6">Our network includes over 20,000 scholars and students working across
+                        borders at thousands of universities worldwide.</p>
                     <div class="grid grid-cols-3 gap-8 text-center">
                         <div>
                             <p class="text-4xl font-bold text-brand">115</p>
@@ -485,12 +913,15 @@
                     </div>
                 </div>
                 <!-- Newsletter -->
-                <div class="bento-surface p-8 mb-16">
+                <div class="bento-surface p-8">
                     <h3 class="text-2xl font-bold text-white mb-4">Stay Informed and Inspired</h3>
-                    <p class="text-slate-400 mb-6">Be the first to know about upcoming programs and opportunities. No spam. We promise. Unsubscribe anytime.</p>
+                    <p class="text-slate-400 mb-6">Be the first to know about upcoming programs and opportunities. No
+                        spam. We promise. Unsubscribe anytime.</p>
                     <div class="flex gap-4">
-                        <input type="email" placeholder="Email" class="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400">
-                        <button class="btn-star px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-[0.1em]">Subscribe</button>
+                        <input type="email" placeholder="Email"
+                            class="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400">
+                        <button
+                            class="btn-star px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-[0.1em]">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -498,31 +929,30 @@
 
     </main>
 
-    <footer class="py-32 px-8">
+    <footer class="pt-12 pb-32 px-8">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
             <div class="max-w-xs space-y-8">
-                <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" class="h-6 w-auto">
+                <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1"
+                    class="h-6 w-auto">
                 <p class="text-[10px] text-white leading-relaxed font-light uppercase tracking-[0.15em]">
-                    The Society of Transnational Academic Researchers (STAR) is a member-supported 501(c)(3) non-profit organization registered in the state of Maryland (US) PO Box 374 Perry Hall, MD 21128 USA.
+                    The Society of Transnational Academic Researchers (STAR) is a member-supported 501(c)(3) non-profit
+                    organization registered in the state of Maryland (US) PO Box 374 Perry Hall, MD 21128 USA.
                 </p>
             </div>
             <div class="flex gap-20">
                 <div class="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-white">
-                    <span class="text-white">Follow Us</span>
-                    <a href="#" class="hover:text-brand transition">LinkedIn</a>
-                    <a href="#" class="hover:text-brand transition">Twitter</a>
-                    <a href="#" class="hover:text-brand transition">YouTube</a>
-                    <a href="#" class="hover:text-brand transition">Facebook</a>
-                </div>
-                <div class="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-white text-right">
-                    <span class="text-white">Support</span>
-                    <a href="#" class="hover:text-brand transition">Legal Terms</a>
-                    <a href="#" class="hover:text-brand transition">Privacy</a>
-                    <a href="#" class="hover:text-brand transition">Contact</a>
+                    <a href="https://www.linkedin.com/company/star-scholars-network/"
+                        class="hover:text-brand transition">LinkedIn</a>
+                    <a href="https://x.com/star_scholars" class="hover:text-brand transition">Twitter</a>
+                    <a href="https://www.youtube.com/channel/UCSpr3SjC8j9kGM7x74yO6YA"
+                        class="hover:text-brand transition">YouTube</a>
+                    <a href="https://www.facebook.com/STARscholarsnetwork/"
+                        class="hover:text-brand transition">Facebook</a>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 text-center text-[10px] font-bold text-white uppercase tracking-widest">
+        <div
+            class="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 text-center text-[10px] font-bold text-white uppercase tracking-widest">
             © 2026 STAR Scholars Network. Driven by Impact.
         </div>
     </footer>
@@ -557,14 +987,14 @@
             );
         }
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        
-        const material = new THREE.PointsMaterial({ 
-            color: 0x5490D9, 
-            size: 3, 
+
+        const material = new THREE.PointsMaterial({
+            color: 0x5490D9,
+            size: 3,
             map: createCircleTexture(),
-            transparent: true, 
+            transparent: true,
             opacity: 0.5,
-            alphaTest: 0.5 
+            alphaTest: 0.5
         });
 
         const starField = new THREE.Points(geometry, material);
@@ -606,5 +1036,133 @@
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 
+    <script>
+        function togglePresidentMessage() {
+            const content = document.getElementById('president-message-full');
+            const btn = document.getElementById('president-message-btn');
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btn.innerHTML = 'Read Less ↑';
+            } else {
+                content.classList.add('hidden');
+                btn.innerHTML = 'Read Full Message →';
+            }
+        }
+    </script>
+    <script>
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('[data-icon="true"]');
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.textContent = '-';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+    <!-- President's Message Popup Overlay -->
+    <div id="president-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm bg-black/80">
+
+        <!-- Modal Card -->
+        <div class="relative bg-slate-900 border border-white/10 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-500"
+            id="president-modal-card">
+
+            <!-- Close Button -->
+            <button onclick="closePresidentModal()"
+                class="absolute top-4 right-4 text-slate-400 hover:text-white transition z-10 p-2 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <div class="flex flex-col md:flex-row h-full">
+                <!-- Image Section (Left) -->
+                <div class="md:w-1/3 relative min-h-[300px] md:min-h-full shrink-0">
+                    <img src="./images/president.png" alt="Dr. Uttam Gaulee"
+                        class="absolute inset-0 w-full h-full object-cover">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-slate-900/90">
+                    </div>
+                </div>
+
+                <!-- Content Section (Right) -->
+                <div class="md:w-2/3 p-8 md:p-10 flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="relative flex h-3 w-3">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-brand"></span>
+                        </span>
+                        <h2 class="text-xs font-bold text-brand uppercase tracking-widest">You've got a message
+                            notification from STAR President</h2>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-white mb-2">Vision for 2026: Message from the President</h2>
+                    <h3 class="text-lg font-semibold text-slate-400 mb-6">Dr. Uttam Gaulee</h3>
+
+                    <div
+                        class="space-y-4 text-slate-300 font-light leading-relaxed text-sm md:text-base text-justify overflow-y-auto pr-2 max-h-[40vh] custom-scrollbar">
+                        <p>Hello STAR family. As we enter 2026, we’re excited to share an important milestone: the
+                            launch of our STAR digital platform, bringing our members, programs, & resources into one
+                            place. At its core are STAR Circles: focused, goal-driven groups led by STAR leaders, with
+                            clear timelines & outcomes.</p>
+
+                        <p>STAR Circles provide a structured and collaborative way to lead research, mentorship,
+                            training, and academic initiatives, while making impact measurable and visible.</p>
+
+                        <p>I invite country directors, leaders of STAR initiatives, and subject-matter experts across
+                            disciplines to take the lead by launching Circles and activating collaboration across
+                            regions and fields.</p>
+
+                        <p>Everything we do moving forward will be organized through STAR Circles. I encourage each of
+                            you to visit the STAR platform, create a Circle, and help us advance global research
+                            collaboration and academic mobility. Detailed information on STAR Circle is available on our
+                            website.</p>
+
+                        <p>Moving beyond the traditional metrics, we are redefining success by measuring impact at a
+                            truly global scale. Thank you, and I look forward to what we will achieve together in the
+                            year ahead.</p>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex justify-end">
+                        <button onclick="closePresidentModal()"
+                            class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest rounded-lg transition duration-300">Close
+                            Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPresidentModal() {
+            const modal = document.getElementById('president-modal');
+            const card = document.getElementById('president-modal-card');
+
+            // Show modal
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+        }
+
+        function closePresidentModal() {
+            const modal = document.getElementById('president-modal');
+            const card = document.getElementById('president-modal-card');
+
+            // Hide modal
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+        }
+    </script>
 </body>
+
 </html>
