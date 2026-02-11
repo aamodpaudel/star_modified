@@ -189,13 +189,15 @@
                         class="hover:text-white transition">Membership</a>
                 </div>
             </div>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 md:gap-6">
                 <a href="https://starscholars.org/"
-                    class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">STAR
+                    class="hidden lg:block text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">STAR
                     Website</a>
                 <a href="https://app.starscholars.org/"
-                    class="bg-white text-slate-900 px-7 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl">Login
-                    to our Network</a>
+                    class="bg-white text-slate-900 px-4 md:px-7 py-2 md:py-2.5 rounded-full text-[10px] md:text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl shrink-0">
+                    <span class="md:hidden">Login</span>
+                    <span class="hidden md:inline">Login to our Network</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -878,7 +880,7 @@
                     <p class="text-slate-400 mb-6">Our country directors serve as catalysts for community-building and
                         collaboration.</p>
                     <a href="https://starscholars.org/country-directors/" target="_blank"
-                        class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg">Meet
+                        class="btn-star text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-[0.1em] shadow-lg inline-block whitespace-nowrap">Meet
                         our Country Directors</a>
                 </div>
 
@@ -897,18 +899,19 @@
                     <h3 class="text-2xl font-bold text-white mb-4">Our Network</h3>
                     <p class="text-slate-400 mb-6">Our network includes over 20,000 scholars and students working across
                         borders at thousands of universities worldwide.</p>
-                    <div class="grid grid-cols-3 gap-8 text-center">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
-                            <p class="text-4xl font-bold text-brand">115</p>
-                            <p class="text-slate-400">Countries</p>
+                            <p class="text-3xl md:text-4xl font-bold text-brand">115</p>
+                            <p class="text-xs md:text-sm text-slate-400 uppercase tracking-widest">Countries</p>
                         </div>
                         <div>
-                            <p class="text-4xl font-bold text-brand">20,000+</p>
-                            <p class="text-slate-400">Scholars and Students</p>
+                            <p class="text-3xl md:text-4xl font-bold text-brand">20,000+</p>
+                            <p class="text-xs md:text-sm text-slate-400 uppercase tracking-widest">Scholars and Students
+                            </p>
                         </div>
                         <div>
-                            <p class="text-4xl font-bold text-brand">2,353</p>
-                            <p class="text-slate-400">Universities</p>
+                            <p class="text-3xl md:text-4xl font-bold text-brand">2,353</p>
+                            <p class="text-xs md:text-sm text-slate-400 uppercase tracking-widest">Universities</p>
                         </div>
                     </div>
                 </div>
@@ -917,11 +920,11 @@
                     <h3 class="text-2xl font-bold text-white mb-4">Stay Informed and Inspired</h3>
                     <p class="text-slate-400 mb-6">Be the first to know about upcoming programs and opportunities. No
                         spam. We promise. Unsubscribe anytime.</p>
-                    <div class="flex gap-4">
+                    <div class="flex flex-col sm:flex-row gap-4">
                         <input type="email" placeholder="Email"
-                            class="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400">
+                            class="w-full sm:flex-1 px-4 py-3 sm:py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400">
                         <button
-                            class="btn-star px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-[0.1em]">Subscribe</button>
+                            class="btn-star w-full sm:w-auto px-6 py-3 sm:py-2 rounded-lg font-bold text-sm uppercase tracking-[0.1em]">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -1085,7 +1088,7 @@
 
             <div class="flex flex-col md:flex-row h-full">
                 <!-- Image Section (Left) -->
-                <div class="md:w-1/3 relative min-h-[300px] md:min-h-full shrink-0">
+                <div class="md:w-1/3 relative min-h-[200px] md:min-h-full shrink-0">
                     <img src="./images/president.png" alt="Dr. Uttam Gaulee"
                         class="absolute inset-0 w-full h-full object-cover">
                     <div
