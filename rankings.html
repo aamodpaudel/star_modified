@@ -10,13 +10,13 @@
     <style>
         :root {
             --star-blue: #5490D9;
-            --star-dark: #030712;
+            --star-dark: #F8FAFC;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--star-dark);
-            color: #f8fafc;
+            color: #0F172A;
             font-weight: 300;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -29,29 +29,29 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #0a1329 0%, #030712 100%);
+            background: radial-gradient(circle at center, #edf4ff 0%, #dbeafe 100%);
         }
 
         .glass-nav {
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(248, 250, 252, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.1);
         }
 
         .bento-surface {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(15, 23, 42, 0.1);
+            backdrop-filter: blur(8px);
             border-radius: 24px;
         }
 
         .impact-table-row {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
             transition: background 0.2s;
         }
 
         .impact-table-row:hover {
-            background: rgba(84, 144, 217, 0.05);
+            background: rgba(84, 144, 217, 0.08);
         }
 
         .btn-star {
@@ -65,10 +65,11 @@
         }
 
         .rubric-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(15, 23, 42, 0.05);
             border-radius: 16px;
             padding: 1.5rem;
+            backdrop-filter: blur(5px);
         }
 
         /* Custom Tooltip */
@@ -128,10 +129,10 @@
             <a href="index.html" class="flex items-center gap-4">
                 <img src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1"
                     alt="Star Scholars" class="h-8 w-auto">
-                <span class="text-white text-xs font-bold uppercase tracking-widest hidden md:block"></span>
+                <span class="text-slate-900 text-xs font-bold uppercase tracking-widest hidden md:block"></span>
             </a>
             <a href="index.html"
-                class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition">Back
+                class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-brand transition">Back
                 to Home</a>
         </div>
     </nav>
@@ -139,54 +140,55 @@
     <main class="relative z-10 pt-16 pb-24 px-8">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-12">
-                <h1 class="text-4xl font-bold text-white mb-4">STAR Impact Ranking
+                <h1 class="text-4xl font-bold text-slate-900 mb-4">STAR Impact Ranking
                     for Institutions</h1>
-                <p class="text-slate-400 max-w-2xl mb-8">The comprehensive global index of the Top 50 institutions
+                <p class="text-slate-600 max-w-2xl mb-8">The comprehensive global index of the Top 50 institutions
                     excelling
                     in transnational research, community engagement, and scholar support within the STAR Scholars
                     Network. Updated January 2026.</p>
 
                 <!-- Scoring Methodology Section -->
-                <div class="mb-12">
+                <div class="bento-surface p-8 md:p-12 mb-12">
                     <div class="rubric-card">
-                        <h3 class="text-white text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3
+                            class="text-slate-900 text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
                             <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Scoring Methodology & Impact Rubric
                         </h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             <!-- Category 1 -->
-                            <div class="p-5 border border-white/5 bg-white/[0.02] rounded-2xl flex flex-col gap-4">
-                                <p class="text-slate-200 text-xs font-bold uppercase tracking-wider">Total Circle
+                            <div class="p-5 border border-slate-200 bg-slate-50 rounded-2xl flex flex-col gap-4">
+                                <p class="text-slate-800 text-xs font-bold uppercase tracking-wider">Total Circle
                                     Participants</p>
                                 <span class="text-brand font-black text-2xl">30%</span>
-                                <p class="text-[10px] text-slate-500 leading-relaxed capitalize">how many circles have
+                                <p class="text-[10px] text-slate-600 leading-relaxed capitalize">how many circles have
                                     individuals from that institution/university actively participated in since the
                                     intialization of the STAR Network</p>
                             </div>
                             <!-- Category 2 -->
-                            <div class="p-5 border border-white/5 bg-white/[0.02] rounded-2xl flex flex-col gap-4">
-                                <p class="text-slate-200 text-xs font-bold uppercase tracking-wider">Total Circles
+                            <div class="p-5 border border-slate-200 bg-slate-50 rounded-2xl flex flex-col gap-4">
+                                <p class="text-slate-800 text-xs font-bold uppercase tracking-wider">Total Circles
                                     Run</p>
                                 <span class="text-brand font-black text-2xl">10%</span>
-                                <p class="text-[10px] text-slate-500 leading-relaxed capitalize">how many circles have
+                                <p class="text-[10px] text-slate-600 leading-relaxed capitalize">how many circles have
                                     been run in the past, are actively running and will run in future led by
                                     leaders from a particular university</p>
                             </div>
                             <!-- Category 3 -->
-                            <div class="p-5 border border-white/5 bg-white/[0.02] rounded-2xl flex flex-col gap-4">
-                                <p class="text-slate-200 text-xs font-bold uppercase tracking-wider">STAR Awards Won
+                            <div class="p-5 border border-slate-200 bg-slate-50 rounded-2xl flex flex-col gap-4">
+                                <p class="text-slate-800 text-xs font-bold uppercase tracking-wider">STAR Awards Won
                                 </p>
                                 <span class="text-brand font-black text-2xl">30%</span>
-                                <p class="text-[10px] text-slate-500 leading-relaxed capitalize">how many STAR
+                                <p class="text-[10px] text-slate-600 leading-relaxed capitalize">how many STAR
                                     affiliated awards (especially the Global Education for Peace award) have been won by
                                     that university in the past</p>
                             </div>
                             <!-- Category 4 -->
-                            <div class="p-5 border border-white/5 bg-white/[0.02] rounded-2xl flex flex-col gap-4">
-                                <p class="text-slate-200 text-xs font-bold uppercase tracking-wider">STAR Circle
+                            <div class="p-5 border border-slate-200 bg-slate-50 rounded-2xl flex flex-col gap-4">
+                                <p class="text-slate-800 text-xs font-bold uppercase tracking-wider">STAR Circle
                                     Engagement</p>
                                 <span class="text-brand font-black text-2xl">30%</span>
-                                <p class="text-[10px] text-slate-500 leading-relaxed capitalize">what was the
+                                <p class="text-[10px] text-slate-600 leading-relaxed capitalize">what was the
                                     engagement & responsiveness rate evaluated by circle leaders for the
                                     participants from a
                                     certain university</p>
@@ -198,41 +200,41 @@
 
             <div class="bento-surface overflow-hidden">
                 <div
-                    class="px-6 py-4 bg-white/5 border-b border-white/5 text-[10px] font-bold uppercase text-brand tracking-widest text-emerald-400 text-center">
+                    class="px-6 py-4 bg-[#5490D9]/10 border-b border-[#5490D9]/10 text-[10px] font-bold uppercase text-brand tracking-widest text-center">
                     Full Network Indices • January 2026
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm min-w-[1000px]">
                         <thead>
-                            <tr class="bg-white/5">
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest">Rank</th>
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest">Institution
+                            <tr class="bg-slate-50">
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest">Rank</th>
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest">Institution
                                 </th>
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest">Country</th>
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest text-right">
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest">Country</th>
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest text-right">
                                     Total Circle Participants</th>
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest text-right">
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest text-right">
                                     Circles Led/Run</th>
-                                <th class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest text-right">
+                                <th class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest text-right">
                                     STAR Circle Engagement</th>
                                 <th
-                                    class="px-6 py-4 font-bold uppercase text-slate-400 tracking-widest text-right text-brand">
+                                    class="px-6 py-4 font-bold uppercase text-slate-500 tracking-widest text-right text-brand">
                                     Impact Score</th>
                             </tr>
                         </thead>
                         <tbody id="rankings-body" class="divide-y divide-white/5">
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#1</td>
-                                <td class="px-6 py-4 text-white font-medium">Kathmandu University</td>
-                                <td class="px-6 py-4 text-slate-400">Nepal</td>
-                                <td class="px-6 py-4 text-right text-slate-300">342</td>
-                                <td class="px-6 py-4 text-right text-slate-300">21</td>
-                                <td class="px-6 py-4 text-right text-slate-300">88%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#1</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Kathmandu University</td>
+                                <td class="px-6 py-4 text-slate-600">Nepal</td>
+                                <td class="px-6 py-4 text-right text-slate-600">342</td>
+                                <td class="px-6 py-4 text-right text-slate-600">21</td>
+                                <td class="px-6 py-4 text-right text-slate-600">88%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">98</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#2</td>
-                                <td class="px-6 py-4 text-white font-medium flex items-center gap-2">
+                                <td class="px-6 py-4 text-slate-500 font-bold">#2</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium flex items-center gap-2">
                                     American University in Emirates
                                     <span class="award-tooltip">
                                         <span
@@ -240,15 +242,15 @@
                                         <span class="tooltip-text">Global Education for Peace Award Winner</span>
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">UAE</td>
-                                <td class="px-6 py-4 text-right text-slate-300">215</td>
-                                <td class="px-6 py-4 text-right text-slate-300">14</td>
-                                <td class="px-6 py-4 text-right text-slate-300">91%</td>
+                                <td class="px-6 py-4 text-slate-600">UAE</td>
+                                <td class="px-6 py-4 text-right text-slate-600">215</td>
+                                <td class="px-6 py-4 text-right text-slate-600">14</td>
+                                <td class="px-6 py-4 text-right text-slate-600">91%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">95</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#3</td>
-                                <td class="px-6 py-4 text-white font-medium flex items-center gap-2">
+                                <td class="px-6 py-4 text-slate-500 font-bold">#3</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium flex items-center gap-2">
                                     O.P. Jindal Global University
                                     <span class="award-tooltip">
                                         <span
@@ -256,24 +258,24 @@
                                         <span class="tooltip-text">Global Education for Peace Award Winner</span>
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">187</td>
-                                <td class="px-6 py-4 text-right text-slate-300">8</td>
-                                <td class="px-6 py-4 text-right text-slate-300">92%</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">187</td>
+                                <td class="px-6 py-4 text-right text-slate-600">8</td>
+                                <td class="px-6 py-4 text-right text-slate-600">92%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">94</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#4</td>
-                                <td class="px-6 py-4 text-white font-medium">Tribhuvan University</td>
-                                <td class="px-6 py-4 text-slate-400">Nepal</td>
-                                <td class="px-6 py-4 text-right text-slate-300">124</td>
-                                <td class="px-6 py-4 text-right text-slate-300">6</td>
-                                <td class="px-6 py-4 text-right text-slate-300">82%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#4</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Tribhuvan University</td>
+                                <td class="px-6 py-4 text-slate-600">Nepal</td>
+                                <td class="px-6 py-4 text-right text-slate-600">124</td>
+                                <td class="px-6 py-4 text-right text-slate-600">6</td>
+                                <td class="px-6 py-4 text-right text-slate-600">82%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">85</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#5</td>
-                                <td class="px-6 py-4 text-white font-medium flex items-center gap-2">
+                                <td class="px-6 py-4 text-slate-500 font-bold">#5</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium flex items-center gap-2">
                                     Algoma University
                                     <span class="award-tooltip">
                                         <span
@@ -281,419 +283,419 @@
                                         <span class="tooltip-text">Global Education for Peace Award Winner</span>
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">Canada</td>
-                                <td class="px-6 py-4 text-right text-slate-300">108</td>
-                                <td class="px-6 py-4 text-right text-slate-300">5</td>
-                                <td class="px-6 py-4 text-right text-slate-300">85%</td>
+                                <td class="px-6 py-4 text-slate-600">Canada</td>
+                                <td class="px-6 py-4 text-right text-slate-600">108</td>
+                                <td class="px-6 py-4 text-right text-slate-600">5</td>
+                                <td class="px-6 py-4 text-right text-slate-600">85%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">82</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#6</td>
-                                <td class="px-6 py-4 text-white font-medium">Morgan State University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">95</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">79%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#6</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Morgan State University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">95</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">79%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">78</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#7</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Algiers</td>
-                                <td class="px-6 py-4 text-slate-400">Algeria</td>
-                                <td class="px-6 py-4 text-right text-slate-300">64</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">75%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#7</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Algiers</td>
+                                <td class="px-6 py-4 text-slate-600">Algeria</td>
+                                <td class="px-6 py-4 text-right text-slate-600">64</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">75%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">72</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#8</td>
-                                <td class="px-6 py-4 text-white font-medium">Istanbul Aydin University</td>
-                                <td class="px-6 py-4 text-slate-400">Turkey</td>
-                                <td class="px-6 py-4 text-right text-slate-300">45</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">70%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#8</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Istanbul Aydin University</td>
+                                <td class="px-6 py-4 text-slate-600">Turkey</td>
+                                <td class="px-6 py-4 text-right text-slate-600">45</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">70%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">68</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#9</td>
-                                <td class="px-6 py-4 text-white font-medium">Nepal Open University</td>
-                                <td class="px-6 py-4 text-slate-400">Nepal</td>
-                                <td class="px-6 py-4 text-right text-slate-300">52</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">72%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#9</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Nepal Open University</td>
+                                <td class="px-6 py-4 text-slate-600">Nepal</td>
+                                <td class="px-6 py-4 text-right text-slate-600">52</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">72%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">65</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#10</td>
-                                <td class="px-6 py-4 text-white font-medium">Federal University Wukari</td>
-                                <td class="px-6 py-4 text-slate-400">Nigeria</td>
-                                <td class="px-6 py-4 text-right text-slate-300">38</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">65%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#10</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Federal University Wukari</td>
+                                <td class="px-6 py-4 text-slate-600">Nigeria</td>
+                                <td class="px-6 py-4 text-right text-slate-600">38</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">65%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">62</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#11</td>
-                                <td class="px-6 py-4 text-white font-medium">Musashino University</td>
-                                <td class="px-6 py-4 text-slate-400">Japan</td>
-                                <td class="px-6 py-4 text-right text-slate-300">7</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">42%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#11</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Musashino University</td>
+                                <td class="px-6 py-4 text-slate-600">Japan</td>
+                                <td class="px-6 py-4 text-right text-slate-600">7</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">42%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">68</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#12</td>
-                                <td class="px-6 py-4 text-white font-medium">Mid-West University</td>
-                                <td class="px-6 py-4 text-slate-400">Nepal</td>
-                                <td class="px-6 py-4 text-right text-slate-300">8</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#12</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Mid-West University</td>
+                                <td class="px-6 py-4 text-slate-600">Nepal</td>
+                                <td class="px-6 py-4 text-right text-slate-600">8</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">65</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#13</td>
-                                <td class="px-6 py-4 text-white font-medium">Far Western University</td>
-                                <td class="px-6 py-4 text-slate-400">Nepal</td>
-                                <td class="px-6 py-4 text-right text-slate-300">7</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">57%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#13</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Far Western University</td>
+                                <td class="px-6 py-4 text-slate-600">Nepal</td>
+                                <td class="px-6 py-4 text-right text-slate-600">7</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">57%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">62</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#14</td>
-                                <td class="px-6 py-4 text-white font-medium">New York University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">7</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">14%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#14</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">New York University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">7</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">14%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">60</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#15</td>
-                                <td class="px-6 py-4 text-white font-medium">Delhi University</td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">25%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#15</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Delhi University</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">25%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">58</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#16</td>
-                                <td class="px-6 py-4 text-white font-medium">Woxsen University</td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">33%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#16</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Woxsen University</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">33%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">55</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#17</td>
-                                <td class="px-6 py-4 text-white font-medium">Chandigarh University</td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">25%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#17</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Chandigarh University</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">25%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">54</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#18</td>
-                                <td class="px-6 py-4 text-white font-medium">University Of Delaware</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#18</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University Of Delaware</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">53</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#19</td>
-                                <td class="px-6 py-4 text-white font-medium">University of the West Indies</td>
-                                <td class="px-6 py-4 text-slate-400">Jamaica</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">0</td>
-                                <td class="px-6 py-4 text-right text-slate-300">10%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#19</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of the West Indies</td>
+                                <td class="px-6 py-4 text-slate-600">Jamaica</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">0</td>
+                                <td class="px-6 py-4 text-right text-slate-600">10%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">52</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#20</td>
-                                <td class="px-6 py-4 text-white font-medium">Nanjiing University of Finance and
+                                <td class="px-6 py-4 text-slate-500 font-bold">#20</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Nanjiing University of Finance and
                                     Economics</td>
-                                <td class="px-6 py-4 text-slate-400">China</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">0%</td>
+                                <td class="px-6 py-4 text-slate-600">China</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">0%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">50</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#21</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Maryland Baltimore County
+                                <td class="px-6 py-4 text-slate-500 font-bold">#21</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Maryland Baltimore County
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">66%</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">66%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">46</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#22</td>
-                                <td class="px-6 py-4 text-white font-medium">Brunel University of London</td>
-                                <td class="px-6 py-4 text-slate-400">UK</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">33%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#22</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Brunel University of London</td>
+                                <td class="px-6 py-4 text-slate-600">UK</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">33%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">45</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#23</td>
-                                <td class="px-6 py-4 text-white font-medium">California State University, Northridge
+                                <td class="px-6 py-4 text-slate-500 font-bold">#23</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">California State University, Northridge
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">44</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#24</td>
-                                <td class="px-6 py-4 text-white font-medium">Federal University Gusau</td>
-                                <td class="px-6 py-4 text-slate-400">Nigeria</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">33%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#24</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Federal University Gusau</td>
+                                <td class="px-6 py-4 text-slate-600">Nigeria</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">33%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">42</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#25</td>
-                                <td class="px-6 py-4 text-white font-medium">Miami University Oxford Ohio</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#25</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Miami University Oxford Ohio</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">40</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#26</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Patras</td>
-                                <td class="px-6 py-4 text-slate-400">Greece</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#26</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Patras</td>
+                                <td class="px-6 py-4 text-slate-600">Greece</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">39</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#27</td>
-                                <td class="px-6 py-4 text-white font-medium">Indiana University Of Pennsylvania</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">66%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#27</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Indiana University Of Pennsylvania</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">66%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">38</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#28</td>
-                                <td class="px-6 py-4 text-white font-medium">Northwestern University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">0%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#28</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Northwestern University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">0%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">36</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#29</td>
-                                <td class="px-6 py-4 text-white font-medium">Georgia State University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">4</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">75%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#29</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Georgia State University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">4</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">75%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">35</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#30</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Gondar</td>
-                                <td class="px-6 py-4 text-slate-400">Ethiopia</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#30</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Gondar</td>
+                                <td class="px-6 py-4 text-slate-600">Ethiopia</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">33</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#31</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Technology Sydney</td>
-                                <td class="px-6 py-4 text-slate-400">Australia</td>
-                                <td class="px-6 py-4 text-right text-slate-300">5</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#31</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Technology Sydney</td>
+                                <td class="px-6 py-4 text-slate-600">Australia</td>
+                                <td class="px-6 py-4 text-right text-slate-600">5</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">32</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#32</td>
-                                <td class="px-6 py-4 text-white font-medium">Texas Christian University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">66%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#32</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Texas Christian University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">66%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">31</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#33</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Leicester</td>
-                                <td class="px-6 py-4 text-slate-400">UK</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#33</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Leicester</td>
+                                <td class="px-6 py-4 text-slate-600">UK</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">30</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#34</td>
-                                <td class="px-6 py-4 text-white font-medium">Stanford University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#34</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Stanford University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">30</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#35</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Louisville</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#35</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Louisville</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">29</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#36</td>
-                                <td class="px-6 py-4 text-white font-medium">Ömer Halisdemir University</td>
-                                <td class="px-6 py-4 text-slate-400">Turkey</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">33%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#36</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Ömer Halisdemir University</td>
+                                <td class="px-6 py-4 text-slate-600">Turkey</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">33%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">28</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#37</td>
-                                <td class="px-6 py-4 text-white font-medium">Austin Peay State University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#37</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Austin Peay State University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">27</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#38</td>
-                                <td class="px-6 py-4 text-white font-medium">Monash University</td>
-                                <td class="px-6 py-4 text-slate-400">Australia</td>
-                                <td class="px-6 py-4 text-right text-slate-300">6</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#38</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Monash University</td>
+                                <td class="px-6 py-4 text-slate-600">Australia</td>
+                                <td class="px-6 py-4 text-right text-slate-600">6</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">26</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#39</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Hyderabad</td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">0%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#39</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Hyderabad</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">0%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">25</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#40</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Benin</td>
-                                <td class="px-6 py-4 text-slate-400">Nigeria</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#40</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Benin</td>
+                                <td class="px-6 py-4 text-slate-600">Nigeria</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">22</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#41</td>
-                                <td class="px-6 py-4 text-white font-medium">Saarland University of Applied Sciences
+                                <td class="px-6 py-4 text-slate-500 font-bold">#41</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Saarland University of Applied Sciences
                                 </td>
-                                <td class="px-6 py-4 text-slate-400">Germany</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">33%</td>
+                                <td class="px-6 py-4 text-slate-600">Germany</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">33%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">22</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#42</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Santa Cruz do Sul</td>
-                                <td class="px-6 py-4 text-slate-400">Brazil</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#42</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Santa Cruz do Sul</td>
+                                <td class="px-6 py-4 text-slate-600">Brazil</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">21</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#43</td>
-                                <td class="px-6 py-4 text-white font-medium">The George Washington University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#43</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">The George Washington University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">20</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#44</td>
-                                <td class="px-6 py-4 text-white font-medium">Ohio University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">3</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#44</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Ohio University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">3</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">20</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#45</td>
-                                <td class="px-6 py-4 text-white font-medium">Mohammed V university</td>
-                                <td class="px-6 py-4 text-slate-400">Morocco</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#45</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Mohammed V university</td>
+                                <td class="px-6 py-4 text-slate-600">Morocco</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">19</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#46</td>
-                                <td class="px-6 py-4 text-white font-medium">University of Cambridge</td>
-                                <td class="px-6 py-4 text-slate-400">UK</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#46</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of Cambridge</td>
+                                <td class="px-6 py-4 text-slate-600">UK</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">18</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#47</td>
-                                <td class="px-6 py-4 text-white font-medium">Columbia University</td>
-                                <td class="px-6 py-4 text-slate-400">USA</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#47</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Columbia University</td>
+                                <td class="px-6 py-4 text-slate-600">USA</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">17</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#48</td>
-                                <td class="px-6 py-4 text-white font-medium">Guru Nanak Dev University</td>
-                                <td class="px-6 py-4 text-slate-400">India</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">50%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#48</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Guru Nanak Dev University</td>
+                                <td class="px-6 py-4 text-slate-600">India</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">50%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">16</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#49</td>
-                                <td class="px-6 py-4 text-white font-medium">Stellenbosch University</td>
-                                <td class="px-6 py-4 text-slate-400">South Africa</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">100%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#49</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">Stellenbosch University</td>
+                                <td class="px-6 py-4 text-slate-600">South Africa</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">100%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">15</td>
                             </tr>
                             <tr class="impact-table-row">
-                                <td class="px-6 py-4 text-slate-400 font-bold">#50</td>
-                                <td class="px-6 py-4 text-white font-medium">University of The Bahamas</td>
-                                <td class="px-6 py-4 text-slate-400">Bahamas</td>
-                                <td class="px-6 py-4 text-right text-slate-300">2</td>
-                                <td class="px-6 py-4 text-right text-slate-300">1</td>
-                                <td class="px-6 py-4 text-right text-slate-300">0%</td>
+                                <td class="px-6 py-4 text-slate-500 font-bold">#50</td>
+                                <td class="px-6 py-4 text-slate-900 font-medium">University of The Bahamas</td>
+                                <td class="px-6 py-4 text-slate-600">Bahamas</td>
+                                <td class="px-6 py-4 text-right text-slate-600">2</td>
+                                <td class="px-6 py-4 text-right text-slate-600">1</td>
+                                <td class="px-6 py-4 text-right text-slate-600">0%</td>
                                 <td class="px-6 py-4 text-right text-brand font-bold text-lg">15</td>
                             </tr>
                         </tbody>
@@ -709,12 +711,102 @@
         </div>
     </main>
 
-    <footer class="py-12 px-8 border-t border-white/5 relative z-10">
-        <div class="max-w-[1400px] mx-auto text-center">
+    <footer class="pt-12 pb-32 px-8">
+        <div class="max-w-7xl mx-auto bento-surface p-12 text-center">
             <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.5em]">© 2026 STAR Scholars Network •
                 Verified Impact Indices</p>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Gemini-style 4-pointed star texture generator
+        const createStarTexture = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64; canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+
+            const centerX = 32;
+            const centerY = 32;
+            const radius = 28;
+
+            ctx.beginPath();
+            // Start at top tip
+            ctx.moveTo(centerX, centerY - radius);
+            // Curve to right tip
+            ctx.quadraticCurveTo(centerX, centerY, centerX + radius, centerY);
+            // Curve to bottom tip
+            ctx.quadraticCurveTo(centerX, centerY, centerX, centerY + radius);
+            // Curve to left tip
+            ctx.quadraticCurveTo(centerX, centerY, centerX - radius, centerY);
+            // Curve back to top tip
+            ctx.quadraticCurveTo(centerX, centerY, centerX, centerY - radius);
+
+            ctx.closePath();
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            return new THREE.CanvasTexture(canvas);
+        };
+
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsCount = 1500;
+        const posArray = new Float32Array(starsCount * 3);
+
+        for (let i = 0; i < starsCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 1000;
+        }
+
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const material = new THREE.PointsMaterial({
+            color: 0x5490D9,
+            size: 8,
+            map: createStarTexture(),
+            transparent: true,
+            opacity: 0.9,
+            alphaTest: 0.01,
+            blending: THREE.AdditiveBlending
+        });
+
+        const starsMesh = new THREE.Points(starsGeometry, material);
+        scene.add(starsMesh);
+
+        camera.position.z = 1;
+
+        // Mouse tracking for parallax
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            starsMesh.rotation.y += 0.0005;
+            starsMesh.rotation.x += 0.0002;
+
+            // Subtle parallax effect
+            camera.position.x += (mouseX / 100 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY / 100 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
 </body>
 
 </html>
