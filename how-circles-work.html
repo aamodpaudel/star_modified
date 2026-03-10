@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>How STAR Circles Work | STAR Scholars Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --star-blue: #5490D9;
+            --star-dark: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Canva Sans', sans-serif;
+            background-color: var(--star-dark);
+            color: #0F172A;
+            font-weight: 300;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        b,
+        strong {
+            font-weight: 500;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #edf4ff 0%, #dbeafe 100%);
+        }
+
+        .glass-nav {
+            background: rgba(248, 250, 252, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        .bento-surface {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(15, 23, 42, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .bento-surface:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--star-blue);
+            box-shadow: 0 0 40px rgba(84, 144, 217, 0.1);
+        }
+
+        .btn-star {
+            background-color: var(--star-blue);
+            transition: all 0.3s ease;
+        }
+
+        .btn-star:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -5px rgba(84, 144, 217, 0.3);
+        }
+
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--star-blue);
+            color: white;
+            border-color: var(--star-blue);
+        }
+
+        .tab-btn.inactive {
+            background-color: rgba(248, 250, 252, 0.5);
+            color: #0F172A;
+            border-color: rgba(15, 23, 42, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-blue-500/30">
+    <div id="canvas-container"></div>
+    <nav class="glass-nav sticky top-0 z-[100] py-4 px-8">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-12">
+                <a href="index.html">
+                    <img alt="Star Scholars" class="h-8 md:h-10 w-auto"
+                        src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" />
+                </a>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+                <a class="hidden lg:block text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-brand transition"
+                    href="how-circles-work.html">How do Circles Work?</a>
+                <a class="hidden lg:block text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-brand transition"
+                    href="https://app.starscholars.org/">Join Community</a>
+                <a class="bg-white text-slate-900 px-4 md:px-7 py-2 md:py-2.5 rounded-full text-[10px] md:text-[11px] font-bold uppercase tracking-widest hover:bg-[#5490D9] hover:text-white transition shadow-2xl shrink-0 border border-slate-200"
+                    href="https://app.starscholars.org/circles">
+                    Join a Circle
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 min-h-screen pb-16">
+        <section class="relative pt-16 pb-12 px-6">
+            <div class="max-w-[1000px] mx-auto text-center">
+                <h1
+                    class="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight leading-tight mb-12 whitespace-nowrap">
+                    What do you wish to know about STAR Circles?
+                </h1>
+
+                <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                    <button id="btn-join" onclick="switchTab('join')"
+                        class="tab-btn active px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border whitespace-nowrap">
+                        1. I wish to know about Star Circles and join them.
+                    </button>
+                    <button id="btn-lead" onclick="switchTab('lead')"
+                        class="tab-btn inactive px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border whitespace-nowrap">
+                        2. I wish to become a Circle Leader & run circles.
+                    </button>
+                </div>
+
+                <div id="content-join" class="text-left animate-fade-in block space-y-8">
+                    <div class="bento-surface p-8 md:p-12">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">STAR Circles Lifecycle</h2>
+                        <p class="text-slate-600 font-light leading-relaxed mb-8 text-justify">
+                            Every STAR program now runs as a "Circle": a self-managed cohort where members collaborate
+                            on cross-border research, training, or mentorship. These are led by Certified STAR Circle
+                            Leaders without needing constant oversight, empowering members to take full ownership of
+                            their work.
+                        </p>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Characteristics
+                            of a Circle</h3>
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-slate-600 font-light leading-relaxed">
+                            <div class="bento-surface p-6 flex flex-col gap-3 relative overflow-hidden bg-white/40">
+                                <div
+                                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-[#5490D9] font-bold text-lg shrink-0 shadow-sm">
+                                    1</div>
+                                <div class="text-justify flex flex-col h-full justify-between">
+                                    <div>
+                                        <strong class="text-slate-900 font-semibold text-lg block mb-2 text-left">Who
+                                            can
+                                            join:</strong>
+                                        STAR Circles can be joined by anyone as long as they're approved by the Circle
+                                        Leader and are registered on our STAR Platform. Registration is simple and takes
+                                        less than 5 minutes. Each STAR Circle Leader determines your eligibility for
+                                        joining
+                                        that circle.
+                                    </div>
+                                    <div class="mt-5 text-center md:text-left">
+                                        <a href="https://app.starscholars.org/"
+                                            class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">Join
+                                            Community</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-surface p-6 flex flex-col gap-3 relative overflow-hidden bg-white/40">
+                                <div
+                                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-[#5490D9] font-bold text-lg shrink-0 shadow-sm">
+                                    2</div>
+                                <div class="text-justify flex flex-col h-full justify-between">
+                                    <div>
+                                        <strong class="text-slate-900 font-semibold text-lg block mb-2 text-left">Fixed
+                                            Duration:</strong>
+                                        STAR Circles run in a fixed schedule and time. They can range from weekly to
+                                        monthly
+                                        basis. The Circle Leader determines the duration and meeting times of each
+                                        Circle
+                                        (virtually or on site).
+                                    </div>
+                                    <div class="mt-5 text-center md:text-left">
+                                        <a href="https://app.starscholars.org/circle-leaders"
+                                            class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">Browse
+                                            Circle Leaders</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-surface p-6 flex flex-col gap-3 relative overflow-hidden bg-white/40">
+                                <div
+                                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-[#5490D9] font-bold text-lg shrink-0 shadow-sm">
+                                    3</div>
+                                <div class="text-justify flex flex-col h-full justify-between">
+                                    <div>
+                                        <strong class="text-slate-900 font-semibold text-lg block mb-2 text-left">Number
+                                            of
+                                            people:</strong>
+                                        STAR Circles will have a fixed amount of people in it. The number of individuals
+                                        that can join is determined by the Circle Leader as well. Also, some STAR
+                                        Circles
+                                        will be specific to particular individuals or region/country.
+                                    </div>
+                                    <div class="mt-5 text-center md:text-left">
+                                        <a href="https://app.starscholars.org/circles"
+                                            class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">View
+                                            STAR Circles</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-surface p-6 flex flex-col gap-3 relative overflow-hidden bg-white/40">
+                                <div
+                                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-[#5490D9] font-bold text-lg shrink-0 shadow-sm">
+                                    4</div>
+                                <div class="text-justify flex flex-col h-full justify-between">
+                                    <div>
+                                        <strong class="text-slate-900 font-semibold text-lg block mb-2 text-left">Medium
+                                            of
+                                            Communication:</strong>
+                                        STAR Circles will utilize our STAR Platform for onboarding, operation and for
+                                        communication. However, for assignments and virtual meetings, Circle leaders
+                                        will
+                                        use their own preferred way or tool accordingly.
+                                    </div>
+                                    <div class="mt-5 text-center md:text-left">
+                                        <a href="https://app.starscholars.org/"
+                                            class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">Explore
+                                            STAR Platform</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bento-surface p-6 md:p-8 flex flex-col md:flex-row gap-4 md:gap-6 items-start bg-white/60 border-l-[6px] border-l-[#5490D9]/80 group hover:border-l-[#5490D9] transition-all cursor-default">
+                            <div
+                                class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-[#5490D9] shadow-inner shrink-0 group-hover:bg-[#5490D9] group-hover:text-white transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-slate-900 font-bold text-xl mb-3">Steps to join a circle</h4>
+                                <p class="text-slate-600 font-light leading-relaxed text-justify">
+                                    Register on our platform, browse the circle page and click on <strong
+                                        class="font-semibold text-slate-800 bg-slate-100 px-2 py-1 rounded">"Enroll
+                                        Now"</strong> button to join. You'll need an approval from the Circle Leader to
+                                    finalize the enrollment onto that circle. Circle Leaders will browse your STAR
+                                    Platform profile and then notify you about your selection on that circle.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div id="content-lead" class="text-left animate-fade-in hidden space-y-8 max-w-4xl mx-auto">
+                <div class="bento-surface p-8 md:p-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">STAR Circle Leader Lifecycle</h2>
+                    <p class="text-slate-600 font-light leading-relaxed mb-8 text-justify">
+                        A circle Leader is an expert, star leader or scholar, who is resposible for the smooth
+                        running of any STAR Circle. A circle leader manages the cohort where members collaborate on
+                        cross-border research, training, or mentorship.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">How do I become
+                        a Circle Leader?</h3>
+                    <ul class="space-y-6 text-slate-600 font-light leading-relaxed">
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">1.</span>
+                            <div class="text-justify">
+                                <strong
+                                    class="text-slate-900 font-semibold text-left block mb-1">Application/Nomination:</strong>
+                                You
+                                can go to <a href="https://app.starscholars.org/nominate-circle-leader"
+                                    class="text-[#5490D9] hover:underline font-medium">this page</a> and fill out
+                                the form to apply as a Circle Leader. You may also nominate someone else as a Circle
+                                Leader.
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">2.</span>
+                            <div class="text-justify">
+                                <strong class="text-slate-900 font-semibold text-left block mb-1">Eligibility for a
+                                    Circle
+                                    Leader:</strong> You don't need special requirements to become a Circle Leader.
+                                However, you need to be an expert in your respective field (determined by academic
+                                qualifications & contributions to the STAR community) to apply. Anyone affiliated to
+                                the STAR Community can nominate you as well.
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">3.</span>
+                            <div class="text-justify">
+                                <strong class="text-slate-900 font-semibold text-left block mb-1">Steps to become a
+                                    Circle
+                                    Leader:</strong> Every Circle Leader should follow these processes to become a
+                                Circle Leader:
+                                <ol class="list-[lower-roman] pl-5 mt-2 space-y-2 text-left">
+                                    <li>They must create an account on the STAR Platform and register with correct
+                                        information.</li>
+                                    <li>They should be a <a href="https://app.starscholars.org/membership" class="text-[#5490D9] hover:underline font-medium"></a>Premium Member of the STAR Scholars Network</a>.</li>
+                                    <li>They should apply by filling out the Circle Leader application form.</li>
+                                    <li>After applying, they should join the STAR Circle Leader orientation which
+                                        informs them about the foundational steps to run a circle properly.</li>
+                                </ol>
+                                <div class="mt-5 text-left">
+                                    <a href="https://app.starscholars.org/membership"
+                                        class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">Explore
+                                        Membership</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">4.</span>
+                            <div class="text-justify">
+                                <strong class="text-slate-900 font-semibold text-left block mb-1">After you become a
+                                    Circle
+                                    Leader:</strong> You can create a Circle according to your preferences on our
+                                STAR Platform. However, make sure that the Star Circle should be based on one of the
+                                STAR Programs.
+                                <div class="mt-5 text-left">
+                                    <a href="https://app.starscholars.org/usecases"
+                                        class="inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest transition shadow-sm">Explore
+                                        Star Programs</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bento-surface p-8 md:p-12">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">As a circle
+                        leader, ensure the following requirements of a Circle</h3>
+                    <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">1.</span>
+                            <div class="text-justify">A Circle Leader is responsible for determining the dates and
+                                duration of time for
+                                any circle.</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">2.</span>
+                            <div class="text-justify">The number of individuals that can join the circle is determined
+                                by the Circle
+                                Leader at the beginning.</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">3.</span>
+                            <div class="text-justify">A Circle Leader is responsible for the approval, pending and
+                                rejection of Circle
+                                enrollment requests by individually reviewing each individual's profile.</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="font-bold text-[#5490D9] text-xl shrink-0">4.</span>
+                            <div class="text-justify">A Circle Leader may use his own video conferencing tools to
+                                moderate the Circle.
+                                However, to post announcements and resources, he should use the Circle page.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="pt-12 pb-32 px-8 relative z-10">
+        <div class="max-w-7xl mx-auto bento-surface p-12 md:p-16">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+                <div class="max-w-xs space-y-8">
+                    <img class="h-6 w-auto"
+                        src="https://i0.wp.com/starscholars.org/wp-content/uploads/2021/05/star_transparent.png?w=1400&ssl=1" />
+                    <p class="text-[10px] text-slate-800 leading-relaxed font-light uppercase tracking-[0.15em]">
+                        The Society of Transnational Academic Researchers (STAR) is a member-supported 501(c)(3)
+                        non-profit organization registered in the state of Maryland (US) PO Box 374 Perry Hall, MD 21128
+                        USA.
+                    </p>
+                </div>
+                <div class="flex gap-20">
+                    <div class="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-800">
+                        <a class="hover:text-brand transition"
+                            href="https://www.linkedin.com/company/star-scholars-network/">LinkedIn</a>
+                        <a class="hover:text-brand transition" href="https://x.com/star_scholars">Twitter</a>
+                        <a class="hover:text-brand transition"
+                            href="https://www.youtube.com/channel/UCSpr3SjC8j9kGM7x74yO6YA">YouTube</a>
+                        <a class="hover:text-brand transition"
+                            href="https://www.facebook.com/STARscholarsnetwork/">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mt-24 pt-8 border-t border-slate-200 text-center text-[10px] font-bold text-slate-800 uppercase tracking-widest">
+                © 2026 STAR Scholars Network. Driven by Impact.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Icon -->
+    <a class="fixed bottom-8 right-8 z-[100] bg-[#5490D9] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center border-2 border-white/20"
+        href="https://app.starscholars.org/ama">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+    </a>
+
+    <style>
+        .text-brand {
+            color: var(--star-blue);
+        }
+
+        .bg-brand {
+            background-color: var(--star-blue);
+        }
+
+        .hover\:text-brand:hover {
+            color: var(--star-blue);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+
+    <script>
+        function switchTab(tab) {
+            const btnJoin = document.getElementById('btn-join');
+            const btnLead = document.getElementById('btn-lead');
+            const contentJoin = document.getElementById('content-join');
+            const contentLead = document.getElementById('content-lead');
+
+            if (tab === 'join') {
+                btnJoin.className = 'tab-btn active px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border';
+                btnLead.className = 'tab-btn inactive px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border';
+                contentJoin.style.display = 'block';
+                contentLead.style.display = 'none';
+            } else {
+                btnLead.className = 'tab-btn active px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border';
+                btnJoin.className = 'tab-btn inactive px-8 py-6 rounded-2xl font-bold text-sm md:text-base uppercase tracking-wider shadow-lg flex-1 border';
+                contentJoin.style.display = 'none';
+                contentLead.style.display = 'block';
+            }
+        }
+
+        // 3D Starfield Background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const createStarTexture = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64; canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            const centerX = 32; const centerY = 32; const radius = 28;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - radius);
+            ctx.quadraticCurveTo(centerX, centerY, centerX + radius, centerY);
+            ctx.quadraticCurveTo(centerX, centerY, centerX, centerY + radius);
+            ctx.quadraticCurveTo(centerX, centerY, centerX - radius, centerY);
+            ctx.quadraticCurveTo(centerX, centerY, centerX, centerY - radius);
+            ctx.closePath();
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            return new THREE.CanvasTexture(canvas);
+        };
+
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        for (let i = 0; i < 16000; i++) {
+            vertices.push(
+                THREE.MathUtils.randFloatSpread(2000),
+                THREE.MathUtils.randFloatSpread(2000),
+                THREE.MathUtils.randFloatSpread(2000)
+            );
+        }
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+        const material = new THREE.PointsMaterial({
+            color: 0x5490D9,
+            size: 6,
+            map: createStarTexture(),
+            transparent: true,
+            opacity: 0.9,
+            alphaTest: 0.01,
+            blending: THREE.AdditiveBlending
+        });
+
+        const starField = new THREE.Points(geometry, material);
+        scene.add(starField);
+        camera.position.z = 100;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            starField.rotation.y += 0.0003;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>
