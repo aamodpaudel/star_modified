@@ -233,7 +233,7 @@
             </div>
         </div>
     </nav>
-    <main class="relative z-10">
+      <main class="relative z-10">
         <section class="relative pt-16 pb-6 px-6 border-b border-slate-200">
             <div class="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div class="lg:col-span-7" id="hero-text">
@@ -305,20 +305,58 @@
                 </div>
             </div>
         </section>
+
+        <div id="join-demo-modal"
+          class="fixed inset-0 z-[200] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm">
+          <div class="relative w-[92vw] max-w-3xl rounded-3xl bg-white p-4 md:p-6 shadow-2xl">
+            <button id="close-join-demo" type="button"
+              class="absolute right-3 top-3 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+              aria-label="Close">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                </path>
+              </svg>
+            </button>
+            <video id="join-demo-video" controls class="w-full rounded-2xl border border-slate-200">
+              <source src="https://starleaders.s3.amazonaws.com/media/videos/db677f797294d8a680093cfe3225209c2750c275-video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
         <!-- How Circles Work CTA -->
         <section class="pt-8 pb-4 px-6 relative z-10" id="how-circles-work-cta">
-            <div class="max-w-4xl mx-auto bento-surface p-8 md:p-8 relative overflow-hidden group">
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition duration-500">
-                </div>
-                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <h2 class="text-xl md:text-2xl font-semibold text-slate-900 tracking-tight text-left">Do you wish to
-                        know how STAR Circles work?</h2>
-                    <a href="how-circles-work.html"
-                        class="shrink-0 inline-block btn-star text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-xl">Click
-                        Here</a>
-                </div>
+          <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bento-surface p-5 md:p-6 relative overflow-hidden group border-[#5490D9]/70 shadow-[0_0_0_1px_rgba(84,144,217,0.25)]">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition duration-500">
+              </div>
+              <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <h2 class="text-base md:text-lg font-semibold text-slate-900 tracking-tight text-left md:whitespace-nowrap">
+                  View the steps to join our platform:
+                </h2>
+                <button id="open-join-demo" type="button"
+                  class="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-slate-200 bg-white/70 hover:bg-white text-slate-900 font-bold text-xs uppercase tracking-[0.2em] shadow-lg transition">
+                  <svg class="w-4 h-4 text-[#5490D9]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"></path>
+                  </svg>
+                  Play Demo
+                </button>
+              </div>
             </div>
+            <div class="bento-surface p-5 md:p-6 relative overflow-hidden group">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition duration-500">
+              </div>
+              <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 h-full">
+                <h2 class="text-base md:text-lg font-semibold text-slate-900 tracking-tight text-left md:whitespace-nowrap">
+                  Learn how STAR Circles work:
+                </h2>
+                <a href="how-circles-work.html"
+                  class="shrink-0 inline-block bg-white text-[#5490D9] border border-[#5490D9] hover:bg-[#5490D9] hover:text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-xl transition">Click
+                  Here</a>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- Upcoming Circles Section -->
@@ -608,14 +646,14 @@
             </div>
             <div class="max-w-[1400px] mx-auto">
                 <div class="bento-surface overflow-hidden flex flex-col">
-                    <div
-                        class="px-6 py-4 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase text-brand tracking-widest">
+                      <div
+                          class="px-6 py-4 bg-blue-50/70 border-b border-slate-200 text-[10px] font-bold uppercase text-brand tracking-widest">
                         Top 10 STAR Global Institutions
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm min-w-[900px]">
-                            <thead>
-                                <tr class="bg-slate-50">
+                              <thead>
+                                  <tr class="bg-blue-50/70">
                                     <th
                                         class="px-6 py-3 text-[10px] font-bold uppercase text-slate-500 tracking-widest text-left">
                                         #</th>
@@ -1067,8 +1105,8 @@
         <!-- Nomination CTA Section - Slim Bar Style -->
         <section class="pt-4 pb-16 px-8">
             <div class="max-w-4xl mx-auto">
-                <a class="bento-surface group p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center gap-6 hover:shadow-brand/20 transition-all duration-300 border border-slate-200 hover:border-brand/30"
-                    href="https://app.starscholars.org/nominate-circle-leader" target="_blank">
+                  <a class="bento-surface group p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center gap-6 hover:shadow-brand/20 transition-all duration-300 border border-slate-200 hover:border-brand/30"
+                      href="https://app.starscholars.org/circle-leaders" target="_blank">
                     <!-- Icon/Avatar -->
                     <div class="relative shrink-0">
                         <div
@@ -1402,10 +1440,48 @@
             card.classList.add('scale-95');
         }
     </script>
+    <script>
+        const joinDemoBtn = document.getElementById('open-join-demo');
+        const joinDemoModal = document.getElementById('join-demo-modal');
+        const joinDemoClose = document.getElementById('close-join-demo');
+        const joinDemoVideo = document.getElementById('join-demo-video');
+
+        if (joinDemoBtn && joinDemoModal && joinDemoClose) {
+            const closeJoinDemo = () => {
+                joinDemoModal.classList.add('hidden');
+                joinDemoModal.classList.remove('flex');
+                if (joinDemoVideo) {
+                    joinDemoVideo.pause();
+                }
+            };
+
+            joinDemoBtn.addEventListener('click', () => {
+                joinDemoModal.classList.remove('hidden');
+                joinDemoModal.classList.add('flex');
+                if (joinDemoVideo) {
+                    joinDemoVideo.currentTime = 0;
+                    joinDemoVideo.play();
+                }
+            });
+
+            joinDemoClose.addEventListener('click', closeJoinDemo);
+            joinDemoModal.addEventListener('click', (e) => {
+                if (e.target === joinDemoModal) {
+                    closeJoinDemo();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !joinDemoModal.classList.contains('hidden')) {
+                    closeJoinDemo();
+                }
+            });
+        }
+    </script>
     <!-- Floating Chat Icon -->
-    <a target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#5490D9] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center border-2 border-white/20"
+    <a target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#5490D9] text-white p-3 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center border-2 border-white/20"
         href="https://app.starscholars.org/ama">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
             <path
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
