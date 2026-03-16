@@ -672,12 +672,46 @@
 
         const requestFullscreen = (video) => {
             if (!video) return;
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) {
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) {
-                video.msRequestFullscreen();
+            const target = video.closest('.relative') || video;
+            const request =
+                target.requestFullscreen ||
+                target.webkitRequestFullscreen ||
+                target.mozRequestFullScreen ||
+                target.msRequestFullscreen;
+
+            if (request) {
+                try {
+                    const result = request.call(target);
+                    if (result && typeof result.catch === 'function') {
+                        result.catch(() => {
+                            // Retry with the video element itself if container fullscreen fails.
+                            if (video.requestFullscreen) {
+                                video.requestFullscreen();
+                            } else if (video.webkitRequestFullscreen) {
+                                video.webkitRequestFullscreen();
+                            } else if (video.mozRequestFullScreen) {
+                                video.mozRequestFullScreen();
+                            } else if (video.msRequestFullscreen) {
+                                video.msRequestFullscreen();
+                            }
+                        });
+                    }
+                } catch (err) {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) {
+                        video.webkitRequestFullscreen();
+                    } else if (video.mozRequestFullScreen) {
+                        video.mozRequestFullScreen();
+                    } else if (video.msRequestFullscreen) {
+                        video.msRequestFullscreen();
+                    }
+                }
+                return;
+            }
+
+            if (video.webkitEnterFullscreen) {
+                video.webkitEnterFullscreen();
             }
         };
 
