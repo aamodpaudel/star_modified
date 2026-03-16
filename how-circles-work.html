@@ -117,7 +117,30 @@
     </nav>
 
     <main class="relative z-10 min-h-screen pb-16">
-        <section class="relative pt-16 pb-12 px-6">
+        <section class="pt-8 pb-4 px-6">
+            <div class="max-w-[1000px] mx-auto">
+                <div
+                    class="bento-surface p-5 md:p-6 relative overflow-hidden group border-[#5490D9]/70 shadow-[0_0_0_1px_rgba(84,144,217,0.25)]">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <h2
+                            class="text-base md:text-lg font-semibold text-slate-900 tracking-tight text-left md:whitespace-nowrap">
+                            Before joining circles, watch this demo & join our platform:
+                        </h2>
+                        <button id="open-join-demo" type="button"
+                            class="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-slate-200 bg-white/70 hover:bg-white text-slate-900 font-bold text-xs uppercase tracking-[0.2em] shadow-lg transition">
+                            <svg class="w-4 h-4 text-[#5490D9]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                            Play Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="relative pt-8 pb-12 px-6">
             <div class="max-w-[1000px] mx-auto text-center">
                 <h1
                     class="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight leading-tight mb-12 whitespace-nowrap">
@@ -161,7 +184,16 @@
                                             d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
                                 </button>
-                                <video controls class="w-full rounded-2xl border border-slate-200">
+                                <button id="fullscreen-join-video" type="button"
+                                    class="absolute -top-3 right-7 z-10 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+                                    aria-label="Fullscreen video">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <video id="join-video" controls class="w-full rounded-2xl border border-slate-200">
                                     <source src="https://starleaders.s3.amazonaws.com/media/videos/8ea12b83e83765d5120eba0d4cfd4de451b0e324-video.mp4"
                                         type="video/mp4">
                                     Your browser does not support the video tag.
@@ -169,41 +201,23 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="bento-surface p-6 md:p-8 flex flex-col md:flex-row gap-4 md:gap-6 items-start bg-white/60 border-l-[6px] border-l-[#5490D9]/80 group hover:border-l-[#5490D9] transition-all cursor-default">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <h4 class="text-slate-900 font-bold text-xl">Steps to join a circle</h4>
-                                <button id="toggle-steps" type="button"
-                                    class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#5490D9]/30 text-[#5490D9] hover:bg-[#5490D9]/10 transition"
-                                    aria-expanded="false" aria-controls="steps-join-content">
-                                    <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                              <p id="steps-join-content"
-                                  class="text-slate-600 font-light leading-relaxed text-justify hidden">
-                                  Register on our platform, browse the circle page and click on <strong
-                                      class="font-semibold text-slate-800 bg-slate-100 px-2 py-1 rounded">"Enroll
-                                      Now"</strong> button to join. You'll need an approval from the Circle Leader to
-                                  finalize the enrollment onto that circle. Circle Leaders will browse your STAR
-                                  Platform profile and then notify you about your selection on that circle.
-                              </p>
-                          </div>
-                    </div>
                     <div class="bento-surface p-8 md:p-12">
-                        <h2 class="text-2xl font-bold text-slate-900 mb-4">STAR Circles:</h2>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Circle Information:</h2>
                         <p class="text-slate-600 font-light leading-relaxed mb-8 text-justify">
                             Every STAR program now runs as a "Circle": a self-managed cohort where members collaborate
                             on cross-border research, training, or mentorship. These are led by Certified STAR Circle
                             Leaders without needing constant oversight, empowering members to take full ownership of
                             their work.
                         </p>
+                        <p class="text-slate-600 font-light leading-relaxed mb-8 text-justify">
+                            Register on our platform, browse the circle page and click on <strong
+                                class="font-semibold text-slate-800 bg-slate-100 px-2 py-1 rounded">"Enroll
+                                Now"</strong> button to join. You'll need an approval from the Circle Leader to
+                            finalize the enrollment onto that circle. Circle Leaders will browse your STAR Platform
+                            profile and then notify you about your selection on that circle.
+                        </p>
 
-                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Circles Information</h3>
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Circle FAQs:</h3>
 
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-slate-600 font-light leading-relaxed">
@@ -303,7 +317,16 @@
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
-                            <video controls class="w-full rounded-2xl border border-slate-200">
+                            <button id="fullscreen-lead-video" type="button"
+                                class="absolute -top-3 right-7 z-10 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+                                aria-label="Fullscreen video">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3">
+                                    </path>
+                                </svg>
+                            </button>
+                            <video id="lead-video" controls class="w-full rounded-2xl border border-slate-200">
                                 <source
                                     src="https://starleaders.s3.amazonaws.com/media/videos/1c62585c07ae210cfef7bdff60eb9049f6ca5756-video.mp4"
                                     type="video/mp4">
@@ -337,7 +360,16 @@
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
-                            <video controls class="w-full rounded-2xl border border-slate-200">
+                            <button id="fullscreen-create-video" type="button"
+                                class="absolute -top-3 right-7 z-10 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+                                aria-label="Fullscreen video">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3">
+                                    </path>
+                                </svg>
+                            </button>
+                            <video id="create-video" controls class="w-full rounded-2xl border border-slate-200">
                                 <source
                                     src="https://starleaders.s3.amazonaws.com/media/videos/71281a6acf221031ca9689d482d614e367b23820-video.mp4"
                                     type="video/mp4">
@@ -347,7 +379,7 @@
                     </div>
                 </div>
                 <div class="bento-surface p-8 md:p-12">
-                    <h2 class="text-2xl font-bold text-slate-900 mb-4">STAR Circle Leader</h2>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Circle Leader:</h2>
                     <p class="text-slate-600 font-light leading-relaxed mb-8 text-justify">
                         A circle Leader is an expert, star leader or scholar, who is resposible for the smooth
                         running of any STAR Circle. A circle leader manages the cohort where members collaborate on
@@ -418,7 +450,7 @@
 
                 <div class="bento-surface p-8 md:p-12">
                     <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">As a circle
-                        leader, ensure the following requirements of a Circle</h3>
+                        leader, ensure the following requirements:</h3>
                     <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
                         <li class="flex gap-4">
                             <span class="font-bold text-[#5490D9] text-xl shrink-0">1.</span>
@@ -451,6 +483,35 @@
             </div>
         </section>
     </main>
+
+    <div id="join-demo-modal"
+        class="fixed inset-0 z-[200] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm">
+        <div class="relative w-[92vw] max-w-3xl rounded-3xl bg-white p-4 md:p-6 shadow-2xl">
+            <button id="close-join-demo" type="button"
+                class="absolute right-3 top-3 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+                aria-label="Close">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <button id="fullscreen-join-demo" type="button"
+                class="absolute right-14 top-3 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 shadow-md transition"
+                aria-label="Fullscreen">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3">
+                    </path>
+                </svg>
+            </button>
+            <video id="join-demo-video" controls class="w-full rounded-2xl border border-slate-200">
+                <source
+                    src="https://starleaders.s3.amazonaws.com/media/videos/db677f797294d8a680093cfe3225209c2750c275-video.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 
     <footer class="pt-12 pb-32 px-8 relative z-10">
         <div class="max-w-7xl mx-auto bento-surface p-12 md:p-16">
@@ -543,20 +604,6 @@
             }
         }
 
-        const toggleStepsBtn = document.getElementById('toggle-steps');
-        const stepsContent = document.getElementById('steps-join-content');
-        if (toggleStepsBtn && stepsContent) {
-            const toggleIcon = toggleStepsBtn.querySelector('svg');
-            toggleStepsBtn.addEventListener('click', () => {
-                const isHidden = stepsContent.classList.contains('hidden');
-                stepsContent.classList.toggle('hidden', !isHidden);
-                toggleStepsBtn.setAttribute('aria-expanded', String(isHidden));
-                if (toggleIcon) {
-                    toggleIcon.classList.toggle('rotate-90', isHidden);
-                }
-            });
-        }
-
         const toggleJoinVideoBtn = document.getElementById('toggle-join-video');
         const joinVideoWrap = document.getElementById('join-video-wrap');
         if (toggleJoinVideoBtn && joinVideoWrap) {
@@ -621,6 +668,77 @@
                 createVideoWrap.classList.add('hidden');
                 toggleCreateVideoBtn.setAttribute('aria-expanded', 'false');
             });
+        }
+
+        const requestFullscreen = (video) => {
+            if (!video) return;
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        };
+
+        const joinVideo = document.getElementById('join-video');
+        const fullscreenJoinVideo = document.getElementById('fullscreen-join-video');
+        if (fullscreenJoinVideo && joinVideo) {
+            fullscreenJoinVideo.addEventListener('click', () => requestFullscreen(joinVideo));
+        }
+
+        const leadVideo = document.getElementById('lead-video');
+        const fullscreenLeadVideo = document.getElementById('fullscreen-lead-video');
+        if (fullscreenLeadVideo && leadVideo) {
+            fullscreenLeadVideo.addEventListener('click', () => requestFullscreen(leadVideo));
+        }
+
+        const createVideo = document.getElementById('create-video');
+        const fullscreenCreateVideo = document.getElementById('fullscreen-create-video');
+        if (fullscreenCreateVideo && createVideo) {
+            fullscreenCreateVideo.addEventListener('click', () => requestFullscreen(createVideo));
+        }
+
+        const joinDemoBtn = document.getElementById('open-join-demo');
+        const joinDemoModal = document.getElementById('join-demo-modal');
+        const joinDemoClose = document.getElementById('close-join-demo');
+        const joinDemoVideo = document.getElementById('join-demo-video');
+        const fullscreenJoinDemo = document.getElementById('fullscreen-join-demo');
+
+        if (joinDemoBtn && joinDemoModal && joinDemoClose) {
+            const closeJoinDemo = () => {
+                joinDemoModal.classList.add('hidden');
+                joinDemoModal.classList.remove('flex');
+                if (joinDemoVideo) {
+                    joinDemoVideo.pause();
+                }
+            };
+
+            joinDemoBtn.addEventListener('click', () => {
+                joinDemoModal.classList.remove('hidden');
+                joinDemoModal.classList.add('flex');
+                if (joinDemoVideo) {
+                    joinDemoVideo.currentTime = 0;
+                    joinDemoVideo.play();
+                }
+            });
+
+            joinDemoClose.addEventListener('click', closeJoinDemo);
+            joinDemoModal.addEventListener('click', (e) => {
+                if (e.target === joinDemoModal) {
+                    closeJoinDemo();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !joinDemoModal.classList.contains('hidden')) {
+                    closeJoinDemo();
+                }
+            });
+        }
+
+        if (fullscreenJoinDemo && joinDemoVideo) {
+            fullscreenJoinDemo.addEventListener('click', () => requestFullscreen(joinDemoVideo));
         }
 
         // 3D Starfield Background
